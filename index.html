@@ -4,76 +4,175 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>منوی کافه بوف</title>
+
 <style>
-body {
-    margin: 0;
-    font-family: sans-serif;
-    background: #0f0f0f;
-    color: #fff;
+body{
+    margin:0;
+    font-family:sans-serif;
+    background:#0f0f0f;
+    color:#fff;
 }
-.container {
-    max-width: 420px;
-    margin: auto;
-    padding: 20px;
+.container{
+    max-width:420px;
+    margin:auto;
+    padding:15px;
 }
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
+h1{
+    text-align:center;
+    margin-bottom:10px;
 }
-.section {
-    margin-bottom: 25px;
+.call-btn{
+    display:block;
+    text-align:center;
+    background:#25d366;
+    color:#000;
+    padding:12px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+    margin-bottom:20px;
 }
-.section h2 {
-    border-bottom: 1px solid #333;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
+.category{
+    margin-bottom:15px;
+    border-radius:10px;
+    overflow:hidden;
+    background:#1a1a1a;
 }
-.item {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px dashed #222;
+.category-header{
+    padding:12px;
+    font-size:18px;
+    cursor:pointer;
+    background:#222;
 }
-.price {
-    color: #f4c430;
+.items{
+    display:none;
 }
-.footer {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 13px;
-    color: #aaa;
+.item{
+    display:flex;
+    gap:10px;
+    padding:10px;
+    border-bottom:1px solid #333;
+}
+.item img{
+    width:70px;
+    height:70px;
+    object-fit:cover;
+    border-radius:8px;
+}
+.item-info{
+    flex:1;
+}
+.item-name{
+    font-weight:bold;
+}
+.tags{
+    font-size:12px;
+    margin:4px 0;
+}
+.tag{
+    background:#f4c430;
+    color:#000;
+    padding:2px 6px;
+    border-radius:5px;
+    margin-left:5px;
+}
+.price{
+    color:#f4c430;
+    font-weight:bold;
+}
+.footer{
+    text-align:center;
+    font-size:12px;
+    color:#aaa;
+    margin-top:20px;
 }
 </style>
 </head>
 
 <body>
 <div class="container">
-    <h1>  منوی کافه بوف</h1>
 
-    <div class="section">
-        <h2>قهوه‌های گرم</h2>
-        <div class="item"><span>اسپرسو سینگل</span><span class="price">121,000</span></div>
-        <div class="item"><span>اسپرسو دابل</span><span class="price">121,000</span></div>
-<div class="item"><span>لاته</span><span class="price">159,000</span></div>
-        <div class="item"><span>کاپوچینو</span><span class="price">159,000</span></div>
-    </div>
+<h1>☕ منوی کافه بوف</h1>
 
-    <div class="section">
-        <h2>نوشیدنی سرد</h2>
-        <div class="item"><span>آیس لاته</span><span class="price">85,000</span></div>
-        <div class="item"><span>آیس آمریکانو</span><span class="price">70,000</span></div>
-    </div>
+<a class="call-btn" href="tel:09123456789">📞 تماس با کافه</a>
 
-    <div class="section">
-        <h2>کیک و دسر</h2>
-        <div class="item"><span>چیزکیک</span><span class="price">90,000</span></div>
-        <div class="item"><span>براونی شکلاتی</span><span class="price">85,000</span></div>
-    </div>
+<!-- قهوه‌های گرم -->
+<div class="category">
+    <div class="category-header" onclick="toggle(this)">☕ قهوه‌های گرم</div>
+    <div class="items">
 
-    <div class="footer">
-          کافه بوف | اسکن کن، سفارش بده
+        <div class="item">
+            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348" alt="">
+            <div class="item-info">
+                <div class="item-name">اسپرسو</div>
+                <div class="tags">
+                    <span class="tag">🔥 پرفروش</span>
+                </div>
+                <div class="price">60,000</div>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="https://images.unsplash.com/photo-1521305916504-4a1121188589" alt="">
+            <div class="item-info">
+                <div class="item-name">لاته</div>
+                <div class="tags">
+                    <span class="tag">⭐ پیشنهاد باریستا</span>
+                </div>
+                <div class="price">80,000</div>
+            </div>
+        </div>
+
     </div>
 </div>
+
+<!-- نوشیدنی سرد -->
+<div class="category">
+    <div class="category-header" onclick="toggle(this)">🧊 نوشیدنی سرد</div>
+    <div class="items">
+
+        <div class="item">
+            <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87" alt="">
+            <div class="item-info">
+                <div class="item-name">آیس لاته</div>
+                <div class="tags">
+                    <span class="tag">🆕 جدید</span>
+                </div>
+                <div class="price">85,000</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- دسر -->
+<div class="category">
+    <div class="category-header" onclick="toggle(this)">🍰 دسر</div>
+    <div class="items">
+
+        <div class="item">
+            <img src="https://images.unsplash.com/photo-1542826438-8b6f1f1b0b77" alt="">
+            <div class="item-info">
+                <div class="item-name">چیزکیک</div>
+                <div class="price">90,000</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="footer">
+📍 کافه بوف | اسکن کن، انتخاب کن
+</div>
+
+</div>
+
+<script>
+function toggle(el){
+    const items = el.nextElementSibling;
+    items.style.display = items.style.display === "block" ? "none" : "block";
+}
+</script>
+
 </body>
 </html>
-
