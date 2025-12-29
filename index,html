@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منوی کافه بوف</title>
+<style>
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #0f0f0f;
+    color: #fff;
+}
+.container {
+    max-width: 420px;
+    margin: auto;
+    padding: 20px;
+}
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.section {
+    margin-bottom: 25px;
+}
+.section h2 {
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+.item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #222;
+}
+.price {
+    color: #f4c430;
+}
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 13px;
+    color: #aaa;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+    <h1>☕ منوی کافه بوف</h1>
+
+    <div class="section">
+        <h2>قهوه‌های گرم</h2>
+        <div class="item"><span>اسپرسو</span><span class="price">60,000</span></div>
+        <div class="item"><span>لاته</span><span class="price">80,000</span></div>
+        <div class="item"><span>کاپوچینو</span><span class="price">75,000</span></div>
+    </div>
+
+    <div class="section">
+        <h2>نوشیدنی سرد</h2>
+        <div class="item"><span>آیس لاته</span><span class="price">85,000</span></div>
+        <div class="item"><span>آیس آمریکانو</span><span class="price">70,000</span></div>
+    </div>
+
+    <div class="section">
+        <h2>کیک و دسر</h2>
+        <div class="item"><span>چیزکیک</span><span class="price">90,000</span></div>
+        <div class="item"><span>براونی شکلاتی</span><span class="price">85,000</span></div>
+    </div>
+
+    <div class="footer">
+        📍 کافه بوف | اسکن کن، سفارش بده
+    </div>
+</div>
+</body>
+</html>
