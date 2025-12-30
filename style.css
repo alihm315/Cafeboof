@@ -1,0 +1,67 @@
+body {
+  font-family: sans-serif;
+  background: #f7f7f7;
+  margin: 0;
+  direction: rtl;
+}
+
+header {
+  background: #2b2b2b;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+#menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+  padding: 15px;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.card button {
+  margin-top: 8px;
+  background: #c49b63;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.order-box {
+  background: white;
+  padding: 15px;
+  margin: 15px;
+  border-radius: 10px;
+}
+
+.order-box input {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+}
+
+.order-box button {
+  width: 100%;
+  padding: 10px;
+  background: #2b2b2b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+
+.orders {
+  padding: 15px;
+}
