@@ -3,22 +3,24 @@
 body {
   margin: 0;
   font-family: Vazirmatn, sans-serif;
-  background: #000000;
+  background: #000;
   color: #eaf5ee;
 }
 
+/* هدر با تصویر پس‌زمینه */
 header {
   text-align: center;
   padding: 30px 10px;
   background: url('images/header-bg.jpg') no-repeat center center;
   background-size: cover;
-  color: #ffffff;
+  color: #fff;
   text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
 }
 
 header h1 { font-size: 26px; margin: 0; }
 header p { color: #d4f2d0; margin-top: 5px; font-size: 14px; }
 
+/* دسته بندی */
 .categories {
   display: flex;
   overflow-x: auto;
@@ -40,10 +42,11 @@ header p { color: #d4f2d0; margin-top: 5px; font-size: 14px; }
 .categories button.active { background: #3fa46a; color: #08150f; }
 .categories button:hover { background: #57c78d; }
 
+/* منو آیتم‌ها: grid چندتایی */
 #menu {
   padding: 10px;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 8px;
 }
 
@@ -51,58 +54,71 @@ header p { color: #d4f2d0; margin-top: 5px; font-size: 14px; }
   background: #1a2e24;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.4);
 }
 
-.item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.5);
-}
+.item img { width: 100%; height: 90px; object-fit: cover; }
 
-.item img { width: 100%; height: 100px; object-fit: cover; }
-
-.info { padding: 6px; }
-.info h3 { margin: 0; font-size: 15px; }
-.info p { font-size: 12px; color: #bfe2cd; }
-.price { margin: 4px 0; color: #7fffb2; font-weight: bold; font-size: 13px; }
-
+.info { padding: 6px; text-align: center; }
+.info h3 { margin: 0; font-size: 14px; }
+.price { margin: 4px 0; color: #7fffb2; font-weight: bold; font-size: 12px; }
 .info button {
-  width: 100%;
+  width: 40px;
+  height: 28px;
   background: #3fa46a;
   border: none;
-  padding: 5px;
-  border-radius: 8px;
-  font-size: 13px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: 0.3s;
 }
-
 .info button:hover { background: #57c78d; }
-
-.tag { display: inline-block; font-size: 10px; padding: 2px 5px; border-radius: 8px; margin-top: 3px; }
+.tag { font-size: 10px; padding: 2px 5px; border-radius: 6px; margin-top: 2px; }
 .best { background: #ffc857; color: #000; }
 .new { background: #7fffb2; color: #000; }
 
-/* سبد خرید جمع و جور پایین صفحه */
-#cart {
+/* سبد خرید کوچک شناور */
+#cart-icon {
   position: fixed;
-  bottom: 10px;
-  left: 10px;
-  right: 10px;
-  max-height: 220px;
+  bottom: 15px;
+  right: 15px;
+  background: #3fa46a;
+  color: #08150f;
+  padding: 8px 12px;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* پنجره بازشونده سبد خرید */
+#cart-popup {
+  position: fixed;
+  bottom: 60px;
+  right: 15px;
+  width: 260px;
+  max-height: 300px;
   overflow-y: auto;
   background: #1d3a2b;
   padding: 8px;
   border-radius: 12px;
   font-size: 13px;
   z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-#cart h3 { margin: 0 0 4px 0; font-size: 14px; }
-#cart input { width: 48%; padding: 5px; margin: 2px 1%; border-radius: 8px; border: none; font-size: 12px; }
-#cart button { width: 100%; padding: 6px; background: #3fa46a; border: none; border-radius: 8px; font-size: 13px; margin-top: 4px; cursor: pointer; transition: 0.3s; }
-#cart button:hover { background: #57c78d; }
-#cart-items div { margin-bottom: 2px; display: flex; justify-content: space-between; align-items: center; }
-#cart-items button.remove-btn { background: #ff5c5c; border: none; padding: 2px 5px; font-size: 11px; border-radius: 6px; cursor: pointer; margin-left: 5px; }
+#cart-popup.hidden { display: none; }
+
+#cart-items div { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
+#cart-items button.remove-btn { background: #ff5c5c; border: none; padding: 2px 5px; font-size: 11px; border-radius: 6px; cursor: pointer; margin-left: 4px; }
 #cart-items button.remove-btn:hover { background: #ff8a8a; }
+
+#cart-popup input { width: 48%; padding: 5px; border-radius: 6px; border: none; font-size: 12px; }
+#cart-popup button { padding: 6px; border-radius: 6px; border: none; cursor: pointer; font-size: 13px; transition: 0.3s; }
+#checkout { background: #3fa46a; color: #08150f; }
+#checkout:hover { background: #57c78d; }
+#close-cart { background: #ff5c5c; color: #fff; }
+#close-cart:hover { background: #ff8a8a; }
