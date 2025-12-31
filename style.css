@@ -1,67 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap');
+
 body {
-  font-family: sans-serif;
-  background: #f7f7f7;
   margin: 0;
-  direction: rtl;
+  font-family: Vazirmatn, sans-serif;
+  background: #0f1f17;
+  color: #eaf5ee;
 }
 
 header {
-  background: #2b2b2b;
-  color: white;
   text-align: center;
-  padding: 15px;
+  padding: 20px;
+  background: linear-gradient(#10271b, #0f1f17);
 }
 
-#menu {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 15px;
-  padding: 15px;
+header h1 {
+  margin: 0;
+  font-size: 26px;
 }
 
-.card {
-  background: white;
-  border-radius: 10px;
+header p {
+  color: #9fd3b5;
+  margin-top: 5px;
+}
+
+.categories {
+  display: flex;
+  overflow-x: auto;
   padding: 10px;
-  text-align: center;
+  gap: 10px;
 }
 
-.card img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.card button {
-  margin-top: 8px;
-  background: #c49b63;
+.categories button {
+  background: #1d3a2b;
+  color: #cfeee0;
   border: none;
-  padding: 8px;
-  border-radius: 8px;
+  padding: 8px 14px;
+  border-radius: 20px;
   cursor: pointer;
 }
 
-.order-box {
-  background: white;
+.categories .active {
+  background: #3fa46a;
+  color: #08150f;
+}
+
+#menu {
   padding: 15px;
-  margin: 15px;
-  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
 }
 
-.order-box input {
-  width: 100%;
-  padding: 8px;
-  margin: 5px 0;
+.item {
+  background: #1a2e24;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
 
-.order-box button {
+.item img {
   width: 100%;
-  padding: 10px;
-  background: #2b2b2b;
-  color: white;
+  height: 160px;
+  object-fit: cover;
+}
+
+.info {
+  padding: 12px;
+}
+
+.info h3 {
+  margin: 0;
+}
+
+.info p {
+  font-size: 14px;
+  color: #bfe2cd;
+}
+
+.price {
+  margin: 8px 0;
+  color: #7fffb2;
+}
+
+.info button {
+  width: 100%;
+  background: #3fa46a;
   border: none;
-  border-radius: 8px;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.orders {
-  padding: 15px;
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+.best {
+  background: #ffc857;
+  color: #000;
+}
+
+.new {
+  background: #7fffb2;
+  color: #000;
 }
