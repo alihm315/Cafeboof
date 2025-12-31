@@ -1,62 +1,111 @@
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>منوی کافه بوف 🌿</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap');
 
-<header>
-  <h1>☕ کافه بوف</h1>
-  <p>میان گل و قهوه 🌿</p>
-</header>
+body {
+  margin: 0;
+  font-family: Vazirmatn, sans-serif;
+  background: #0f1f17;
+  color: #eaf5ee;
+}
 
-<nav class="categories">
-  <button onclick="filterItems('all')" class="active">همه</button>
-  <button onclick="filterItems('coffee')">قهوه</button>
-  <button onclick="filterItems('cold')">سردنوش</button>
-  <button onclick="filterItems('cake')">کیک</button>
-</nav>
+header {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(#10271b, #0f1f17);
+}
 
-<main id="menu">
+header h1 {
+  margin: 0;
+  font-size: 26px;
+}
 
-  <!-- آیتم -->
-  <div class="item coffee">
-    <img src="images/coffee.jpg">
-    <div class="info">
-      <h3>لاته 🌿</h3>
-      <span class="tag best">پرفروش</span>
-      <p>قهوه با شیر بخار داده شده</p>
-      <div class="price">85,000 تومان</div>
-      <button>➕ افزودن</button>
-    </div>
-  </div>
+header p {
+  color: #9fd3b5;
+  margin-top: 5px;
+}
 
-  <div class="item cold">
-    <img src="images/cold.jpg">
-    <div class="info">
-      <h3>آیس‌موکا ❄️</h3>
-      <span class="tag new">جدید</span>
-      <p>موکا خنک با یخ</p>
-      <div class="price">95,000 تومان</div>
-      <button>➕ افزودن</button>
-    </div>
-  </div>
+.categories {
+  display: flex;
+  overflow-x: auto;
+  padding: 10px;
+  gap: 10px;
+}
 
-  <div class="item cake">
-    <img src="images/cake.jpg">
-    <div class="info">
-      <h3>چیزکیک 🍰</h3>
-      <p>خانگی با سس توت</p>
-      <div class="price">110,000 تومان</div>
-      <button>➕ افزودن</button>
-    </div>
-  </div>
+.categories button {
+  background: #1d3a2b;
+  color: #cfeee0;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+}
 
-</main>
+.categories .active {
+  background: #3fa46a;
+  color: #08150f;
+}
 
-<script src="script.js"></script>
-</body>
-</html>
+#menu {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.item {
+  background: #1a2e24;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.item img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.info {
+  padding: 12px;
+}
+
+.info h3 {
+  margin: 0;
+}
+
+.info p {
+  font-size: 14px;
+  color: #bfe2cd;
+}
+
+.price {
+  margin: 8px 0;
+  color: #7fffb2;
+}
+
+.info button {
+  width: 100%;
+  background: #3fa46a;
+  border: none;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+.best {
+  background: #ffc857;
+  color: #000;
+}
+
+.new {
+  background: #7fffb2;
+  color: #000;
+}
