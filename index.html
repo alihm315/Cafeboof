@@ -13,7 +13,7 @@ body {
   font-family: sans-serif;
 }
 
-/* لینک‌های بالا */
+/* لینک‌ها و آیکون‌ها بالا */
 .top-links {
   position: fixed;
   top: 10px;
@@ -42,12 +42,20 @@ body {
   z-index: 1000;
 }
 
-/* هدر */
+/* هدر با بنر جنگلی */
 header {
   padding: 70px 10px 10px;
   text-align: center;
+  background-image: url('images/banner.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
 }
-header h1 { margin: 0; }
+header h1 {
+  margin: 0;
+  color: #fff;
+  text-shadow: 1px 1px 4px #000;
+}
 
 /* جستجو */
 #searchBox {
@@ -99,10 +107,7 @@ header h1 { margin: 0; }
   object-fit: cover;
   border-radius: 8px;
 }
-.item h3 {
-  margin: 4px 0;
-  font-size: 13px;
-}
+.item h3 { margin: 4px 0; font-size: 13px; }
 .item span { font-size: 12px; color: #8f8; }
 .item button {
   margin-top: 4px;
@@ -202,6 +207,7 @@ header h1 { margin: 0; }
 <div class="top-links">
   <a href="https://instagram.com/kafeboof" target="_blank"><img src="icons/instagram.svg"></a>
   <a href="https://wa.me/989388388937" target="_blank"><img src="icons/whatsapp.svg"></a>
+  <a href="tel:09388388937"><img src="icons/phone.svg"></a>
   <a href="https://maps.app.goo.gl/uykS7EjyRvsAzLGm6" target="_blank"><img src="icons/googlemaps.svg"></a>
   <a href="https://nshn.ir/25vbvh8IpxJ7e2" target="_blank"><img src="icons/neshan.svg"></a>
 </div>
