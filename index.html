@@ -2,28 +2,60 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>منوی کافه بوف ☕</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منوی کافه بوف 🌿</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
   <h1>☕ کافه بوف</h1>
-  <p>سفارش حضوری</p>
+  <p>میان گل و قهوه 🌿</p>
 </header>
 
-<section id="menu"></section>
+<nav class="categories">
+  <button onclick="filterItems('all')" class="active">همه</button>
+  <button onclick="filterItems('coffee')">قهوه</button>
+  <button onclick="filterItems('cold')">سردنوش</button>
+  <button onclick="filterItems('cake')">کیک</button>
+</nav>
 
-<section class="order-box">
-  <h2>ثبت سفارش</h2>
+<main id="menu">
 
-  <input type="text" id="customerName" placeholder="نام شما (اختیاری)">
-  <input type="number" id="tableNumber" placeholder="شماره میز (اختیاری)">
+  <!-- آیتم -->
+  <div class="item coffee">
+    <img src="images/coffee.jpg">
+    <div class="info">
+      <h3>لاته 🌿</h3>
+      <span class="tag best">پرفروش</span>
+      <p>قهوه با شیر بخار داده شده</p>
+      <div class="price">85,000 تومان</div>
+      <button>➕ افزودن</button>
+    </div>
+  </div>
 
-  <button onclick="submitOrder()">ثبت سفارش</button>
-</section>
+  <div class="item cold">
+    <img src="images/cold.jpg">
+    <div class="info">
+      <h3>آیس‌موکا ❄️</h3>
+      <span class="tag new">جدید</span>
+      <p>موکا خنک با یخ</p>
+      <div class="price">95,000 تومان</div>
+      <button>➕ افزودن</button>
+    </div>
+  </div>
 
-<section id="orders" class="orders"></section>
+  <div class="item cake">
+    <img src="images/cake.jpg">
+    <div class="info">
+      <h3>چیزکیک 🍰</h3>
+      <p>خانگی با سس توت</p>
+      <div class="price">110,000 تومان</div>
+      <button>➕ افزودن</button>
+    </div>
+  </div>
+
+</main>
 
 <script src="script.js"></script>
 </body>
