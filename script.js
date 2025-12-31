@@ -1,57 +1,59 @@
 let cart = [];
 
-function filterItems(category) {
-  const items = document.querySelectorAll('.item');
-  const buttons = document.querySelectorAll('.categories button');
+const menuItems = document.querySelectorAll('.item');
+const cartItemsDiv = document.getElementById('cart-items');
+const cartTotalDiv = document.getElementById('cart-total');
+const addButtons = document.querySelectorAll('.add-btn');
+const categoryButtons = document.querySelectorAll('.categories button');
 
-  buttons.forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
+// دسته بندی
+categoryButtons.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const category = e.target.getAttribute('data-category');
+    categoryButtons.forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
 
-  items.forEach(item => {
-    if (category === 'all') {
-      item.style.display = 'block';
-    } else {
-      if (item.classList.contains(category)) {
+    menuItems.forEach(item => {
+      if (category === 'all' || item.classList.contains(category)) {
         item.style.display = 'block';
       } else {
         item.style.display = 'none';
       }
-    }
+    });
   });
-}
+});
 
-function addToCart(name, price) {
-  cart.push({ name, price });
-  updateCart();
-}
+// افزودن به سبد
+addButtons.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const itemDiv = e.target.closest('.item');
+    const name = itemDiv.querySelector('h3').textContent;
+    const price = parseInt(itemDiv.querySelector('.price').dataset.price);
+    cart.push({ name, price });
+    updateCart();
+  });
+});
 
 function updateCart() {
-  const cartItems = document.getElementById('cart-items');
-  const cartTotal = document.getElementById('cart-total');
-
-  cartItems.innerHTML = '';
+  cartItemsDiv.innerHTML = '';
   let total = 0;
-
-  cart.forEach((item) => {
-    total += item.price;
+  cart.forEach(i => {
+    total += i.price;
     const div = document.createElement('div');
-    div.textContent = `${item.name} - ${item.price.toLocaleString()} تومان`;
-    cartItems.appendChild(div);
+    div.textContent = `${i.name} - ${i.price.toLocaleString()} تومان`;
+    cartItemsDiv.appendChild(div);
   });
-
-  cartTotal.textContent = `جمع کل: ${total.toLocaleString()} تومان`;
+  cartTotalDiv.textContent = `جمع کل: ${total.toLocaleString()} تومان`;
 }
 
-// ثبت سفارش (فعلاً هشدار)
+// ثبت سفارش
 document.getElementById('checkout').addEventListener('click', () => {
-  const name = document.getElementById('customer-name').value;
-  const table = document.getElementById('table-number').value;
-
+  const name = document.getElementById('customer-name').value.trim();
+  const table = document.getElementById('table-number').value.trim();
   if (!name || !table || cart.length === 0) {
     alert('لطفاً نام، شماره میز و آیتم‌ها را وارد کنید!');
     return;
   }
-
   alert(`سفارش شما ثبت شد!\nنام: ${name}\nمیز: ${table}\nتعداد آیتم‌ها: ${cart.length}`);
   cart = [];
   updateCart();
