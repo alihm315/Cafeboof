@@ -37,12 +37,25 @@ addButtons.forEach(btn => {
 function updateCart() {
   cartItemsDiv.innerHTML = '';
   let total = 0;
-  cart.forEach(i => {
+
+  cart.forEach((i, index) => {
     total += i.price;
     const div = document.createElement('div');
     div.textContent = `${i.name} - ${i.price.toLocaleString()} تومان`;
+
+    // دکمه حذف
+    const removeBtn = document.createElement('button');
+    removeBtn.textContent = '❌';
+    removeBtn.classList.add('remove-btn');
+    removeBtn.addEventListener('click', () => {
+      cart.splice(index, 1);
+      updateCart();
+    });
+
+    div.appendChild(removeBtn);
     cartItemsDiv.appendChild(div);
   });
+
   cartTotalDiv.textContent = `جمع کل: ${total.toLocaleString()} تومان`;
 }
 
