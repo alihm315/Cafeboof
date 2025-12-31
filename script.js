@@ -8,10 +8,14 @@ function filterItems(category) {
   event.target.classList.add('active');
 
   items.forEach(item => {
-    if (category === 'all' || item.classList.contains(category)) {
+    if (category === 'all') {
       item.style.display = 'block';
     } else {
-      item.style.display = 'none';
+      if (item.classList.contains(category)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
     }
   });
 }
@@ -28,7 +32,7 @@ function updateCart() {
   cartItems.innerHTML = '';
   let total = 0;
 
-  cart.forEach((item, index) => {
+  cart.forEach((item) => {
     total += item.price;
     const div = document.createElement('div');
     div.textContent = `${item.name} - ${item.price.toLocaleString()} تومان`;
@@ -38,7 +42,7 @@ function updateCart() {
   cartTotal.textContent = `جمع کل: ${total.toLocaleString()} تومان`;
 }
 
-// ثبت سفارش (فعلاً فقط هشدار)
+// ثبت سفارش (فعلاً هشدار)
 document.getElementById('checkout').addEventListener('click', () => {
   const name = document.getElementById('customer-name').value;
   const table = document.getElementById('table-number').value;
@@ -52,20 +56,3 @@ document.getElementById('checkout').addEventListener('click', () => {
   cart = [];
   updateCart();
 });
-
-On Wed, Dec 31, 2025, 16:19 Ali HM <ali.ngh514@gmail.com> wrote:
-function filterItems(category) {
-  const items = document.querySelectorAll('.item');
-  const buttons = document.querySelectorAll('.categories button');
-
-  buttons.forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
-
-  items.forEach(item => {
-    if (category === 'all' || item.classList.contains(category)) {
-      item.style.display = 'block';
-    } else {
-      item.style.display = 'none';
-    }
-  });
-}
