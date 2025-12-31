@@ -14,22 +14,22 @@
 </header>
 
 <nav class="categories">
-  <button onclick="filterItems('all')" class="active">همه</button>
-  <button onclick="filterItems('coffee')">قهوه</button>
-  <button onclick="filterItems('cold')">سردنوش</button>
-  <button onclick="filterItems('cake')">کیک</button>
+  <button data-category="all" class="active">همه</button>
+  <button data-category="coffee">قهوه</button>
+  <button data-category="cold">سردنوش</button>
+  <button data-category="cake">کیک</button>
 </nav>
 
 <main id="menu">
-
+  <!-- آیتم‌ها با کلاس دسته‌بندی -->
   <div class="item coffee">
     <img src="images/coffee.jpg" alt="لاته">
     <div class="info">
       <h3>لاته 🌿</h3>
       <span class="tag best">پرفروش</span>
       <p>قهوه با شیر بخار داده شده</p>
-      <div class="price">85,000 تومان</div>
-      <button onclick="addToCart('لاته 🌿', 85000)">➕ افزودن</button>
+      <div class="price" data-price="85000">85,000 تومان</div>
+      <button class="add-btn">➕ افزودن</button>
     </div>
   </div>
 
@@ -39,8 +39,8 @@
       <h3>آیس‌موکا ❄️</h3>
       <span class="tag new">جدید</span>
       <p>موکا خنک با یخ</p>
-      <div class="price">95,000 تومان</div>
-      <button onclick="addToCart('آیس‌موکا ❄️', 95000)">➕ افزودن</button>
+      <div class="price" data-price="95000">95,000 تومان</div>
+      <button class="add-btn">➕ افزودن</button>
     </div>
   </div>
 
@@ -49,11 +49,10 @@
     <div class="info">
       <h3>چیزکیک 🍰</h3>
       <p>خانگی با سس توت</p>
-      <div class="price">110,000 تومان</div>
-      <button onclick="addToCart('چیزکیک 🍰', 110000)">➕ افزودن</button>
+      <div class="price" data-price="110000">110,000 تومان</div>
+      <button class="add-btn">➕ افزودن</button>
     </div>
   </div>
-
 </main>
 
 <!-- سبد خرید جمع و جور -->
