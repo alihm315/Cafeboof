@@ -1,261 +1,239 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>کافه بوف</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>کافه بوف</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background: #000;
-      color: #eee;
-    }
+<style>
+body {
+  margin: 0;
+  background: #000;
+  color: #eee;
+  font-family: sans-serif;
+}
 
-    /* لینک‌های بالا */
-    .top-links {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      display: flex;
-      gap: 10px;
-      z-index: 1000;
-    }
+/* لینک‌های بالا */
+.top-links {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 10px;
+  z-index: 1000;
+}
+.top-links img {
+  width: 26px;
+  transition: 0.2s;
+}
+.top-links img:hover { transform: scale(1.15); }
 
-    .top-links img {
-      width: 26px;
-      height: 26px;
-      transition: transform 0.2s, filter 0.2s;
-      filter: brightness(0.9);
-    }
+/* هدر */
+header {
+  padding: 70px 10px 15px;
+  text-align: center;
+}
+header h1 { margin: 0; }
 
-    .top-links img:hover {
-      transform: scale(1.15);
-      filter: brightness(1.2);
-    }
+/* دسته‌بندی */
+.categories {
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  overflow-x: auto;
+}
+.categories button {
+  background: #222;
+  border: none;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.categories button.active {
+  background: #2e7d32;
+}
 
-    /* هدر */
-    header {
-      text-align: center;
-      padding: 60px 10px 20px;
-      background: linear-gradient(to bottom, #111, #000);
-    }
+/* منو */
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+  padding: 10px;
+}
+.item {
+  background: #111;
+  border-radius: 10px;
+  padding: 8px;
+  text-align: center;
+}
+.item img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.item h3 {
+  font-size: 14px;
+  margin: 6px 0;
+}
+.item span {
+  font-size: 13px;
+  color: #8f8;
+}
+.item button {
+  margin-top: 6px;
+  width: 100%;
+  background: #2e7d32;
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  padding: 5px;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 32px;
-      letter-spacing: 2px;
-    }
-
-    header p {
-      margin-top: 8px;
-      font-size: 14px;
-      color: #aaa;
-    }
-
-    /* منو */
-    .menu {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 12px;
-      padding: 15px;
-    }
-
-    .item {
-      background: #111;
-      border-radius: 10px;
-      padding: 10px;
-      text-align: center;
-    }
-
-    .item img {
-      width: 100%;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    .item h3 {
-      font-size: 14px;
-      margin: 8px 0 4px;
-    }
-
-    .item span {
-      font-size: 13px;
-      color: #8f8;
-    }
-
-    .item button {
-      margin-top: 6px;
-      width: 100%;
-      background: #2e7d32;
-      border: none;
-      border-radius: 6px;
-      padding: 6px;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    /* سبد خرید */
-    .cart-btn {
-      position: fixed;
-      bottom: 15px;
-      right: 15px;
-      background: #1b5e20;
-      border-radius: 50%;
-      width: 55px;
-      height: 55px;
-      font-size: 22px;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      z-index: 1000;
-    }
-
-    .cart {
-      position: fixed;
-      bottom: 80px;
-      right: 15px;
-      background: #111;
-      border-radius: 10px;
-      width: 260px;
-      max-height: 60vh;
-      overflow-y: auto;
-      padding: 10px;
-      display: none;
-    }
-
-    .cart h3 {
-      margin-top: 0;
-      text-align: center;
-    }
-
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 13px;
-      margin-bottom: 6px;
-    }
-
-    .cart-controls button {
-      background: #333;
-      border: none;
-      color: #fff;
-      width: 22px;
-      height: 22px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .total {
-      text-align: center;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-  </style>
+/* سبد خرید */
+.cart-btn {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #1b5e20;
+  color: #fff;
+  font-size: 22px;
+  border: none;
+}
+.cart {
+  position: fixed;
+  bottom: 80px;
+  right: 15px;
+  width: 260px;
+  background: #111;
+  border-radius: 10px;
+  padding: 10px;
+  display: none;
+}
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+.cart-item button {
+  background: #333;
+  color: #fff;
+  border: none;
+  width: 22px;
+  height: 22px;
+}
+.total {
+  text-align: center;
+  margin-top: 8px;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- لینک‌های بالا -->
-  <div class="top-links">
-    <a href="https://instagram.com/kafeboof" target="_blank">
-      <img src="icons/instagram.svg">
-    </a>
+<div class="top-links">
+  <a href="https://instagram.com/kafeboof" target="_blank"><img src="icons/instagram.svg"></a>
+  <a href="https://wa.me/989388388937" target="_blank"><img src="icons/whatsapp.svg"></a>
+  <a href="https://maps.app.goo.gl/uykS7EjyRvsAzLGm6" target="_blank"><img src="icons/googlemaps.svg"></a>
+  <a href="https://nshn.ir/25vbvh8IpxJ7e2" target="_blank"><img src="icons/neshan.svg"></a>
+</div>
 
-    <a href="https://wa.me/989388388937" target="_blank">
-      <img src="icons/whatsapp.svg">
-    </a>
+<header>
+  <h1>کافه بوف</h1>
+</header>
 
-    <a href="https://maps.app.goo.gl/uykS7EjyRvsAzLGm6" target="_blank">
-      <img src="icons/googlemaps.svg">
-    </a>
+<div class="categories" id="categories"></div>
+<div class="menu" id="menu"></div>
 
-    <a href="https://nshn.ir/25vbvh8IpxJ7e2" target="_blank">
-      <img src="icons/neshan.svg">
-    </a>
-  </div>
+<button class="cart-btn" onclick="toggleCart()">🛒</button>
+<div class="cart" id="cart">
+  <div id="cartItems"></div>
+  <div class="total" id="total"></div>
+</div>
 
-  <!-- هدر -->
-  <header>
-    <h1>کافه بوف</h1>
-    <p>سفارش سریع • پرداخت حضوری یا آنلاین</p>
-  </header>
+<script>
+const items = [
+ {name:'قهوه ترک',price:85000,cat:'قهوه',img:'images/coffee.jpg'},
+ {name:'لاته',price:110000,cat:'قهوه',img:'images/latte.jpg'},
+ {name:'چای',price:40000,cat:'گرم',img:'images/tea.jpg'}
+];
 
-  <!-- منو -->
-  <div class="menu">
+let cart = {};
+let currentCat = 'همه';
+
+const cats = ['همه', ...new Set(items.map(i=>i.cat))];
+
+function renderCategories(){
+  const c = document.getElementById('categories');
+  c.innerHTML='';
+  cats.forEach(cat=>{
+    const b=document.createElement('button');
+    b.innerText=cat;
+    if(cat===currentCat) b.classList.add('active');
+    b.onclick=()=>{currentCat=cat;renderMenu();renderCategories();}
+    c.appendChild(b);
+  });
+}
+
+function renderMenu(){
+  const m=document.getElementById('menu');
+  m.innerHTML='';
+  items.filter(i=>currentCat==='همه'||i.cat===currentCat)
+  .forEach(i=>{
+    m.innerHTML+=`
     <div class="item">
-      <img src="images/coffee.jpg">
-      <h3>قهوه ترک</h3>
-      <span>85,000 تومان</span>
-      <button onclick="addToCart('قهوه ترک', 85000)">افزودن</button>
-    </div>
+      <img src="${i.img}">
+      <h3>${i.name}</h3>
+      <span>${i.price.toLocaleString()} تومان</span>
+      <button onclick="addToCart('${i.name}',${i.price})">افزودن</button>
+    </div>`;
+  });
+}
 
-    <div class="item">
-      <img src="images/latte.jpg">
-      <h3>لاته</h3>
-      <span>110,000 تومان</span>
-      <button onclick="addToCart('لاته', 110000)">افزودن</button>
-    </div>
-  </div>
+function addToCart(n,p){
+  cart[n]=cart[n]?{price:p,qty:cart[n].qty+1}:{price:p,qty:1};
+  renderCart();
+}
 
-  <!-- سبد خرید -->
-  <button class="cart-btn" onclick="toggleCart()">🛒</button>
+function renderCart(){
+  const c=document.getElementById('cartItems');
+  const t=document.getElementById('total');
+  c.innerHTML='';
+  let sum=0;
+  for(let i in cart){
+    sum+=cart[i].price*cart[i].qty;
+    c.innerHTML+=`
+    <div class="cart-item">
+      ${i}
+      <div>
+        <button onclick="changeQty('${i}',-1)">-</button>
+        ${cart[i].qty}
+        <button onclick="changeQty('${i}',1)">+</button>
+      </div>
+    </div>`;
+  }
+  t.innerText='جمع کل: '+sum.toLocaleString()+' تومان';
+}
 
-  <div class="cart" id="cart">
-    <h3>سبد خرید</h3>
-    <div id="cartItems"></div>
-    <div class="total" id="total"></div>
-  </div>
+function changeQty(n,d){
+  cart[n].qty+=d;
+  if(cart[n].qty<=0) delete cart[n];
+  renderCart();
+}
 
-  <script>
-    let cart = {};
+function toggleCart(){
+  const c=document.getElementById('cart');
+  c.style.display=c.style.display==='block'?'none':'block';
+}
 
-    function addToCart(name, price) {
-      if (!cart[name]) {
-        cart[name] = { price, qty: 1 };
-      } else {
-        cart[name].qty++;
-      }
-      renderCart();
-    }
-
-    function changeQty(name, delta) {
-      cart[name].qty += delta;
-      if (cart[name].qty <= 0) delete cart[name];
-      renderCart();
-    }
-
-    function renderCart() {
-      const cartDiv = document.getElementById("cartItems");
-      const totalDiv = document.getElementById("total");
-      cartDiv.innerHTML = "";
-      let total = 0;
-
-      for (let item in cart) {
-        total += cart[item].price * cart[item].qty;
-        cartDiv.innerHTML += `
-          <div class="cart-item">
-            <span>${item}</span>
-            <div class="cart-controls">
-              <button onclick="changeQty('${item}',-1)">−</button>
-              ${cart[item].qty}
-              <button onclick="changeQty('${item}',1)">+</button>
-            </div>
-          </div>
-        `;
-      }
-
-      totalDiv.innerText = "جمع کل: " + total.toLocaleString() + " تومان";
-    }
-
-    function toggleCart() {
-      const c = document.getElementById("cart");
-      c.style.display = c.style.display === "none" ? "block" : "none";
-    }
-  </script>
+renderCategories();
+renderMenu();
+</script>
 
 </body>
 </html>
