@@ -24,9 +24,23 @@ body {
 }
 .top-links img {
   width: 26px;
+  height: 26px;
   transition: 0.2s;
 }
 .top-links img:hover { transform: scale(1.15); }
+
+/* پیام افزوده شد */
+#notif {
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2e7d32;
+  padding: 8px 16px;
+  border-radius: 8px;
+  display: none;
+  z-index: 1000;
+}
 
 /* هدر */
 header {
@@ -104,6 +118,22 @@ header h1 { margin: 0; }
   font-size: 22px;
   border: none;
 }
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff5252;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+/* خود سبد */
 .cart {
   position: fixed;
   bottom: 80px;
@@ -130,18 +160,42 @@ header h1 { margin: 0; }
 .total {
   text-align: center;
   margin-top: 8px;
+  font-weight: bold;
+}
+#orderForm {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+#orderForm input {
+  padding: 5px;
+  border-radius: 6px;
+  border: none;
+}
+#orderForm button {
+  background: #2e7d32;
+  color: #fff;
+  border: none;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 </style>
 </head>
 
 <body>
 
+<!-- لینک‌ها -->
 <div class="top-links">
   <a href="https://instagram.com/kafeboof" target="_blank"><img src="icons/instagram.svg"></a>
   <a href="https://wa.me/989388388937" target="_blank"><img src="icons/whatsapp.svg"></a>
   <a href="https://maps.app.goo.gl/uykS7EjyRvsAzLGm6" target="_blank"><img src="icons/googlemaps.svg"></a>
   <a href="https://nshn.ir/25vbvh8IpxJ7e2" target="_blank"><img src="icons/neshan.svg"></a>
 </div>
+
+<!-- پیام افزوده شد -->
+<div id="notif">آیتم به سبد خرید اضافه شد!</div>
 
 <header>
   <h1>کافه بوف</h1>
@@ -150,10 +204,19 @@ header h1 { margin: 0; }
 <div class="categories" id="categories"></div>
 <div class="menu" id="menu"></div>
 
-<button class="cart-btn" onclick="toggleCart()">🛒</button>
+<button class="cart-btn" onclick="toggleCart()">🛒
+  <span class="cart-count" id="cartCount">0</span>
+</button>
+
 <div class="cart" id="cart">
   <div id="cartItems"></div>
   <div class="total" id="total"></div>
+
+  <form id="orderForm">
+    <input type="text" id="customerName" placeholder="نام شما">
+    <input type="text" id="tableNumber" placeholder="شماره میز">
+    <button type="button" onclick="submitOrder()">ثبت سفارش</button>
+  </form>
 </div>
 
 <script>
@@ -165,7 +228,6 @@ const items = [
 
 let cart = {};
 let currentCat = 'همه';
-
 const cats = ['همه', ...new Set(items.map(i=>i.cat))];
 
 function renderCategories(){
@@ -195,18 +257,22 @@ function renderMenu(){
   });
 }
 
-function addToCart(n,p){
-  cart[n]=cart[n]?{price:p,qty:cart[n].qty+1}:{price:p,qty:1};
+function addToCart(name, price){
+  cart[name]=cart[name]?{price,qty:cart[name].qty+1}:{price,qty:1};
   renderCart();
+  showNotif();
 }
 
 function renderCart(){
   const c=document.getElementById('cartItems');
   const t=document.getElementById('total');
+  const countSpan=document.getElementById('cartCount');
   c.innerHTML='';
   let sum=0;
+  let totalQty=0;
   for(let i in cart){
     sum+=cart[i].price*cart[i].qty;
+    totalQty+=cart[i].qty;
     c.innerHTML+=`
     <div class="cart-item">
       ${i}
@@ -218,6 +284,7 @@ function renderCart(){
     </div>`;
   }
   t.innerText='جمع کل: '+sum.toLocaleString()+' تومان';
+  countSpan.innerText=totalQty;
 }
 
 function changeQty(n,d){
@@ -228,7 +295,33 @@ function changeQty(n,d){
 
 function toggleCart(){
   const c=document.getElementById('cart');
-  c.style.display=c.style.display==='block'?'none':'block';
+  c.style.display = c.style.display==='block'?'none':'block';
+}
+
+function showNotif(){
+  const n=document.getElementById('notif');
+  n.style.display='block';
+  setTimeout(()=>{n.style.display='none';},2000);
+}
+
+function submitOrder(){
+  const name=document.getElementById('customerName').value;
+  const table=document.getElementById('tableNumber').value;
+  if(!name||!table){
+    alert('لطفاً نام و شماره میز را وارد کنید!');
+    return;
+  }
+  if(Object.keys(cart).length===0){
+    alert('سبد خرید خالی است!');
+    return;
+  }
+  console.log('سفارش ثبت شد:', {customer:name,table,cart});
+  alert('سفارش شما ثبت شد!');
+  cart={};
+  renderCart();
+  document.getElementById('customerName').value='';
+  document.getElementById('tableNumber').value='';
+  toggleCart();
 }
 
 renderCategories();
