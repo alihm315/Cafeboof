@@ -3,76 +3,259 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>منوی کافه بوف 🌿</title>
-  <link rel="stylesheet" href="style.css">
+  <title>کافه بوف</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #000;
+      color: #eee;
+    }
+
+    /* لینک‌های بالا */
+    .top-links {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .top-links img {
+      width: 26px;
+      height: 26px;
+      transition: transform 0.2s, filter 0.2s;
+      filter: brightness(0.9);
+    }
+
+    .top-links img:hover {
+      transform: scale(1.15);
+      filter: brightness(1.2);
+    }
+
+    /* هدر */
+    header {
+      text-align: center;
+      padding: 60px 10px 20px;
+      background: linear-gradient(to bottom, #111, #000);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    /* منو */
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+      padding: 15px;
+    }
+
+    .item {
+      background: #111;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .item img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .item h3 {
+      font-size: 14px;
+      margin: 8px 0 4px;
+    }
+
+    .item span {
+      font-size: 13px;
+      color: #8f8;
+    }
+
+    .item button {
+      margin-top: 6px;
+      width: 100%;
+      background: #2e7d32;
+      border: none;
+      border-radius: 6px;
+      padding: 6px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* سبد خرید */
+    .cart-btn {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      background: #1b5e20;
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      font-size: 22px;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .cart {
+      position: fixed;
+      bottom: 80px;
+      right: 15px;
+      background: #111;
+      border-radius: 10px;
+      width: 260px;
+      max-height: 60vh;
+      overflow-y: auto;
+      padding: 10px;
+      display: none;
+    }
+
+    .cart h3 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .cart-controls button {
+      background: #333;
+      border: none;
+      color: #fff;
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .total {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-  <h1>☕ کافه بوف</h1>
-  <p>میان گل و قهوه 🌿</p>
-</header>
+  <!-- لینک‌های بالا -->
+  <div class="top-links">
+    <a href="https://instagram.com/kafeboof" target="_blank">
+      <img src="icons/instagram.svg">
+    </a>
 
-<nav class="categories">
-  <button data-category="all" class="active">همه</button>
-  <button data-category="coffee">قهوه</button>
-  <button data-category="cold">سردنوش</button>
-  <button data-category="cake">کیک</button>
-</nav>
+    <a href="https://wa.me/989388388937" target="_blank">
+      <img src="icons/whatsapp.svg">
+    </a>
 
-<main id="menu">
-  <!-- نمونه آیتم‌ها -->
-  <div class="item coffee">
-    <img src="images/coffee.jpg" alt="لاته">
-    <div class="info">
-      <h3>لاته 🌿</h3>
-      <span class="tag best">پرفروش</span>
-      <div class="price" data-price="85000">85,000 تومان</div>
-      <button class="add-btn">➕</button>
+    <a href="https://maps.app.goo.gl/uykS7EjyRvsAzLGm6" target="_blank">
+      <img src="icons/googlemaps.svg">
+    </a>
+
+    <a href="https://nshn.ir/25vbvh8IpxJ7e2" target="_blank">
+      <img src="icons/neshan.svg">
+    </a>
+  </div>
+
+  <!-- هدر -->
+  <header>
+    <h1>کافه بوف</h1>
+    <p>سفارش سریع • پرداخت حضوری یا آنلاین</p>
+  </header>
+
+  <!-- منو -->
+  <div class="menu">
+    <div class="item">
+      <img src="images/coffee.jpg">
+      <h3>قهوه ترک</h3>
+      <span>85,000 تومان</span>
+      <button onclick="addToCart('قهوه ترک', 85000)">افزودن</button>
+    </div>
+
+    <div class="item">
+      <img src="images/latte.jpg">
+      <h3>لاته</h3>
+      <span>110,000 تومان</span>
+      <button onclick="addToCart('لاته', 110000)">افزودن</button>
     </div>
   </div>
 
-  <div class="item cold">
-    <img src="images/cold.jpg" alt="آیس موکا">
-    <div class="info">
-      <h3>آیس‌موکا ❄️</h3>
-      <span class="tag new">جدید</span>
-      <div class="price" data-price="95000">95,000 تومان</div>
-      <button class="add-btn">➕</button>
-    </div>
+  <!-- سبد خرید -->
+  <button class="cart-btn" onclick="toggleCart()">🛒</button>
+
+  <div class="cart" id="cart">
+    <h3>سبد خرید</h3>
+    <div id="cartItems"></div>
+    <div class="total" id="total"></div>
   </div>
 
-  <div class="item cake">
-    <img src="images/cake.jpg" alt="چیزکیک">
-    <div class="info">
-      <h3>چیزکیک 🍰</h3>
-      <div class="price" data-price="110000">110,000 تومان</div>
-      <button class="add-btn">➕</button>
-    </div>
-  </div>
-  <div class="item cake">
-    <img src="images/cake.jpg" alt="کروسان">
-    <div class="info">
-      <h3>کروسان 🍰</h3>
-      <div class="price" data-price="110000">90,000 تومان</div>
-      <button class="add-btn">➕</button>
-    </div>
-  </div>
-</main>
+  <script>
+    let cart = {};
 
-<!-- سبد خرید شناور کوچک -->
-<div id="cart-icon">🛒 <span id="cart-count">0</span></div>
+    function addToCart(name, price) {
+      if (!cart[name]) {
+        cart[name] = { price, qty: 1 };
+      } else {
+        cart[name].qty++;
+      }
+      renderCart();
+    }
 
-<div id="cart-popup" class="hidden">
-  <h3>سبد خرید</h3>
-  <div id="cart-items"></div>
-  <div id="cart-total">جمع کل: 0 تومان</div>
-  <input type="text" id="customer-name" placeholder="نام شما">
-  <input type="text" id="table-number" placeholder="شماره میز">
-  <button id="checkout">ثبت سفارش</button>
-  <button id="close-cart">✖ بستن</button>
-</div>
+    function changeQty(name, delta) {
+      cart[name].qty += delta;
+      if (cart[name].qty <= 0) delete cart[name];
+      renderCart();
+    }
 
-<script src="script.js"></script>
+    function renderCart() {
+      const cartDiv = document.getElementById("cartItems");
+      const totalDiv = document.getElementById("total");
+      cartDiv.innerHTML = "";
+      let total = 0;
+
+      for (let item in cart) {
+        total += cart[item].price * cart[item].qty;
+        cartDiv.innerHTML += `
+          <div class="cart-item">
+            <span>${item}</span>
+            <div class="cart-controls">
+              <button onclick="changeQty('${item}',-1)">−</button>
+              ${cart[item].qty}
+              <button onclick="changeQty('${item}',1)">+</button>
+            </div>
+          </div>
+        `;
+      }
+
+      totalDiv.innerText = "جمع کل: " + total.toLocaleString() + " تومان";
+    }
+
+    function toggleCart() {
+      const c = document.getElementById("cart");
+      c.style.display = c.style.display === "none" ? "block" : "none";
+    }
+  </script>
+
 </body>
 </html>
