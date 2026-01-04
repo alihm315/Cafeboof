@@ -132,6 +132,8 @@ document.getElementById('checkout').onclick = () => {
   cart = [];
   updateCart();
   cartPopup.classList.add('hidden');
-  function toggleRecipe(el){
-  el.nextElementSibling.classList.toggle('show');
 };
+
+function toggleRecipe(el){
+  el.nextElementSibling.classList.toggle('show');
+}
