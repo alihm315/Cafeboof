@@ -53,22 +53,12 @@ header h1 { font-size: 26px; margin: 0; }
 
 .item img { width: 100%; height: 90px; object-fit: cover; }
 
-.info { padding: 6px; text-align: center; }
-.info h3 { margin: 0; font-size: 14px; }
+.item h3 { margin: 0; font-size: 14px; }
+.item span { margin: 4px 0; color: #7fffb2; font-weight: bold; font-size: 12px; }
+.item button { width: 100%; background: #3fa46a; border: none; border-radius: 6px; padding: 4px; margin-top: 4px; cursor: pointer; }
+.item button:hover { background: #57c78d; }
 
-.price { margin: 4px 0; color: #7fffb2; font-weight: bold; font-size: 12px; }
-
-.info button {
-  width: 40px;
-  height: 28px;
-  background: #3fa46a;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.info button:hover { background: #57c78d; }
-
+/* سبد خرید */
 #cart-icon {
   position: fixed;
   bottom: 15px;
