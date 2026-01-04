@@ -4,204 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>کافه بوف</title>
-
-<style>
-body {
-  margin: 0;
-  background: #000;
-  color: #eee;
-  font-family: sans-serif;
-}
-
-/* لینک‌ها و آیکون‌ها بالا */
-.top-links {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  display: flex;
-  gap: 10px;
-  z-index: 1000;
-}
-.top-links img {
-  width: 26px;
-  height: 26px;
-  transition: 0.2s;
-}
-.top-links img:hover { transform: scale(1.15); }
-
-/* پیام افزوده شد */
-#notif {
-  position: fixed;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #2e7d32;
-  padding: 8px 16px;
-  border-radius: 8px;
-  display: none;
-  z-index: 1000;
-}
-
-/* هدر با بنر جنگلی */
-header {
-  padding: 70px 10px 10px;
-  text-align: center;
-  background-image: url('images/banner.jpg');
-  background-size: cover;
-  background-position: center;
-  border-radius: 10px;
-}
-header h1 {
-  margin: 0;
-  color: #fff;
-  text-shadow: 1px 1px 4px #000;
-}
-
-/* جستجو */
-#searchBox {
-  width: calc(100% - 20px);
-  margin: 5px 10px;
-  padding: 6px 10px;
-  border-radius: 20px;
-  border: none;
-  background: #222;
-  color: #fff;
-}
-
-/* دسته‌بندی */
-.categories {
-  display: flex;
-  gap: 8px;
-  padding: 10px;
-  overflow-x: auto;
-}
-.categories button {
-  background: #222;
-  border: none;
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 20px;
-  cursor: pointer;
-}
-.categories button.active {
-  background: #2e7d32;
-}
-
-/* منو */
-.menu {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 10px;
-  padding: 10px;
-}
-.item {
-  background: #111;
-  border-radius: 10px;
-  padding: 6px;
-  text-align: center;
-  font-size: 13px;
-}
-.item img {
-  width: 100%;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-.item h3 { margin: 4px 0; font-size: 13px; }
-.item span { font-size: 12px; color: #8f8; }
-.item button {
-  margin-top: 4px;
-  width: 100%;
-  background: #2e7d32;
-  border: none;
-  color: #fff;
-  border-radius: 6px;
-  padding: 4px;
-  font-size: 12px;
-}
-
-/* سبد خرید */
-.cart-btn {
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  background: #1b5e20;
-  color: #fff;
-  font-size: 22px;
-  border: none;
-}
-.cart-count {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background: #ff5252;
-  width: 20px;
-  height: 20px;
-  font-size: 12px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-}
-
-/* خود سبد */
-.cart {
-  position: fixed;
-  bottom: 80px;
-  right: 15px;
-  width: 260px;
-  background: #111;
-  border-radius: 10px;
-  padding: 10px;
-  display: none;
-}
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  margin-bottom: 6px;
-}
-.cart-item button {
-  background: #333;
-  color: #fff;
-  border: none;
-  width: 22px;
-  height: 22px;
-}
-.total {
-  text-align: center;
-  margin-top: 8px;
-  font-weight: bold;
-  line-height: 1.4;
-}
-#orderForm {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-#orderForm input {
-  padding: 5px;
-  border-radius: 6px;
-  border: none;
-  font-size: 12px;
-}
-#orderForm button {
-  background: #2e7d32;
-  color: #fff;
-  border: none;
-  padding: 6px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 13px;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <!-- لینک‌ها -->
@@ -213,212 +17,35 @@ header h1 {
   <a href="https://nshn.ir/25vbvh8IpxJ7e2" target="_blank"><img src="icons/neshan.svg"></a>
 </div>
 
-<!-- پیام افزوده شد -->
 <div id="notif">آیتم به سبد خرید اضافه شد!</div>
 
 <header>
   <h1>کافه بوف</h1>
 </header>
 
-<!-- جستجو -->
 <input type="text" id="searchBox" placeholder="جستجو" oninput="renderMenu()">
 
 <div class="categories" id="categories"></div>
 <div class="menu" id="menu"></div>
 
-<button class="cart-btn" onclick="toggleCart()">🛒
-  <span class="cart-count" id="cartCount">0</span>
+<button class="cart-btn" id="cart-icon">🛒
+  <span class="cart-count" id="cart-count">0</span>
 </button>
 
-<div class="cart" id="cart">
-  <div id="cartItems"></div>
-  <div class="total" id="total"></div>
+<div class="cart" id="cart-popup">
+  <div id="cart-items"></div>
+  <div class="total" id="cart-total"></div>
 
   <form id="orderForm">
-    <input type="text" id="customerName" placeholder="نام شما">
-    <input type="text" id="tableNumber" placeholder="شماره میز">
-    <button type="button" onclick="submitOrder()">ثبت سفارش</button>
+    <input type="text" id="customer-name" placeholder="نام شما">
+    <input type="text" id="table-number" placeholder="شماره میز">
+    <button type="button" id="checkout">ثبت سفارش</button>
   </form>
+
+  <button id="close-cart">بستن سبد</button>
 </div>
 
-<script>
-const items = [
- {name:'اسپرسو سینگل',price:110000,cat:'بار قهوه',img:'images/coffee.jpg'},
- {name:'اسپرسو دابل',price:110000,cat:'بار قهوه',img:'images/coffee.jpg'},
-  {name:'لاته ماچا نارگیل',price:230000,cat:'بار قهوه',img:'images/latte.jpg'},
-  {name:'ماچا',price:170000,cat:'بار قهوه',img:'images/latte.jpg'},
- {name:'امریکانو سینگل',price:110000,cat:'بار قهوه',img:'images/coffee.jpg'},
-  {name:'امریکانو دابل',price:110000,cat:'بار قهوه',img:'images/coffee.jpg'},
-  {name:'لاته',price:150000,cat:'بار قهوه',img:'images/coffee.jpg'},
-  {name:'آیس لاته',price:150000,cat:'بار قهوه',img:'images/coffee.jpg'},
- {name:'لاته ماسالا',price:170000,cat:'بار قهوه',img:'images/latte.jpg'},
-  {name:'فراپاچینو',price:170000,cat:'بار قهوه',img:'images/latte.jpg'},
-  {name:'موکا',price:160000,cat:'بار قهوه',img:'images/latte.jpg'},
-  {name:'کارامل ماکیاتو',price:160000,cat:'بار قهوه',img:'images/latte.jpg'},
-  {name:'فندق ماکیاتو',price:160000,cat:'بار قهوه',img:'images/latte.jpg'},
-  {name:'وانیل ماکیاتو',price:160000,cat:'بار قهوه',img:'images/latte.jpg'},
-  {name:'لوتوس ماکیاتو',price:160000,cat:'بار قهوه',img:'images/latte.jpg'},
-  {name:'نارگیل ماکیاتو',price:160000,cat:'بار قهوه',img:'images/latte.jpg'},
-  {name:'آیس موکا',price:160000,cat:'بار قهوه',img:'images/latte.jpg'},
-  {name:'آیس کارامل',price:160000,cat:'بار قهوه',img:'images/latte.jpg'},
-  {name:'آیس فندق',price:160000,cat:'بار قهوه',img:'images/latte.jpg'},
-  {name:'آیس وانیل',price:160000,cat:'بار قهوه',img:'images/latte.jpg'},
-  {name:'آیس لوتوس',price:160000,cat:'بار قهوه',img:'images/latte.jpg'},
-  {name:'آیس نارگیل',price:160000,cat:'بار قهوه',img:'images/latte.jpg'},
-  {name:'یونانی',price:150000,cat:'بار قهوه',img:'images/latte.jpg'},
-  {name:'قهوه ترک',price:110000,cat:'بار قهوه',img:'images/latte.jpg'},
- {name:'چای لیوانی',price:75000,cat:'چای و دمنوش',img:'images/tea.jpg'},
-  {name:'چای سبز',price:120000,cat:'چای و دمنوش',img:'images/tea.jpg'},
-       {name:'چای ترش',price:120000,cat:'چای و دمنوش',img:'images/tea.jpg'},
-   {name:'چای مراکشی',price:120000,cat:'چای و دمنوش',img:'images/tea.jpg'},
-   {name:'دمنوش بهارنارنج-به لیمو',price:120000,cat:'چای و دمنوش',img:'images/tea.jpg'},
-     {name:'دمنوش گل گاو زبان',price:120000,cat:'چای و دمنوش',img:'images/tea.jpg'},
-     {name:'دمنوش آرامش',price:130000,cat:'چای و دمنوش',img:'images/tea.jpg'},
-     {name:'دمنوش سرماخوردگی',price:130000,cat:'چای و دمنوش',img:'images/tea.jpg'},
- {name:'200CC هات چاکلت',price:150000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
-  {name:'400CC هات چاکلت',price:200000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
-  {name:'200CC شیر ماسالا',price:140000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
-  {name:'400CC شیر ماسالا',price:190000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
-  {name:'200CC چای کرک',price:140000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
-  {name:'400CC چای کرک',price:190000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
-  {name:'200CC مارشمالو چاکلت',recipe:'مارشمالو، پودر هات چاکلت، شیر',price:150000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
-  {name:'400CC مارشمالو چاکلت',price:200000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
-  {name:'200CC وایت چاکلت',price:140000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
-  {name:'400CC وایت چاکلت',price:190000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
- {name:'آبمیوه',price:50000,cat:'نوشیدنی سرد',img:'images/juice.jpg'},
- {name:'شیک موز',price:70000,cat:'شیک',img:'images/milkshake.jpg'},
- {name:'ساندویچ',price:120000,cat:'پیش غذا',img:'images/sandwich.jpg'},
- {name:'استیک',price:250000,cat:'غذا اصلی',img:'images/steak.jpg'},
- {name:'پنکیک',price:80000,cat:'صبحانه',img:'images/pancake.jpg'},
- {name:'چیزکیک',price:60000,cat:'کیک و دسر',img:'images/cheesecake.jpg'}
-];
-
-let cart = {};
-let currentCat = 'همه';
-const cats = ['همه', ...new Set(items.map(i=>i.cat))];
-
-function renderCategories(){
-  const c = document.getElementById('categories');
-  c.innerHTML='';
-  cats.forEach(cat=>{
-    const b=document.createElement('button');
-    b.innerText=cat;
-    if(cat===currentCat) b.classList.add('active');
-    b.onclick=()=>{currentCat=cat;renderMenu();renderCategories();}
-    c.appendChild(b);
-  });
-}
-
-function renderMenu(){
-  const m=document.getElementById('menu');
-  m.innerHTML='';
-  const search = document.getElementById('searchBox').value.toLowerCase();
-  items.filter(i=> (currentCat==='همه'||i.cat===currentCat) && i.name.toLowerCase().includes(search))
-  .forEach(i=>{
-    m.innerHTML += `
-  <div class="item">
-    <img src="${i.img}">
-    <h3>${i.name}</h3>
-    <span>${i.price.toLocaleString()} تومان</span>
-
-    <div class="recipe-toggle" onclick="toggleRecipe(this)">
-      📄 رسپی
-    </div>
-    <div class="recipe-text">
-      ${i.recipe}
-    </div>
-
-    <button onclick="addToCart('${i.name}',${i.price})">افزودن</button>
-  </div>`;
-  });
-}
-
-function addToCart(name, price){
-  cart[name]=cart[name]?{price,qty:cart[name].qty+1}:{price,qty:1};
-  renderCart();
-  showNotif();
-}
-
-function renderCart(){
-  const c=document.getElementById('cartItems');
-  const t=document.getElementById('total');
-  const countSpan=document.getElementById('cartCount');
-  c.innerHTML='';
-  let sum=0;
-  let totalQty=0;
-  for(let i in cart){
-    sum+=cart[i].price*cart[i].qty;
-    totalQty+=cart[i].qty;
-    c.innerHTML+=`
-    <div class="cart-item">
-      ${i}
-      <div>
-        <button onclick="changeQty('${i}',-1)">-</button>
-        ${cart[i].qty}
-        <button onclick="changeQty('${i}',1)">+</button>
-      </div>
-    </div>`;
-  }
-
-  // ارزش افزوده 10٪
-  let tax = Math.round(sum * 0.1);
-  let finalSum = sum + tax;
-
-  t.innerHTML=`جمع آیتم‌ها: ${sum.toLocaleString()} تومان
-  <br>-------------------<br>
-  ارزش افزوده (10٪): ${tax.toLocaleString()} تومان
-  <br>جمع کل فاکتور: ${finalSum.toLocaleString()} تومان`;
-
-  countSpan.innerText=totalQty;
-}
-
-function changeQty(n,d){
-  cart[n].qty+=d;
-  if(cart[n].qty<=0) delete cart[n];
-  renderCart();
-}
-
-function toggleCart(){
-  const c=document.getElementById('cart');
-  c.style.display = c.style.display==='block'?'none':'block';
-}
-
-function showNotif(){
-  const n=document.getElementById('notif');
-  n.style.display='block';
-  setTimeout(()=>{n.style.display='none';},2000);
-}
-
-function submitOrder(){
-  const name=document.getElementById('customerName').value;
-  const table=document.getElementById('tableNumber').value;
-  if(!name||!table){
-    alert('لطفاً نام و شماره میز را وارد کنید!');
-    return;
-  }
-  if(Object.keys(cart).length===0){
-    alert('سبد خرید خالی است!');
-    return;
-  }
-
-  let sum = 0;
-  for(let i in cart) sum += cart[i].price*cart[i].qty;
-  let tax = Math.round(sum*0.1);
-  let finalSum = sum + tax;
-
-  console.log('سفارش ثبت شد:', {customer:name,table,cart,finalSum});
-  alert(`سفارش شما ثبت شد!\nجمع کل: ${finalSum.toLocaleString()} تومان`);
-
-  cart={};
-  renderCart();
-  document.getElementById('customerName').value='';
-  document.getElementById('tableNumber').value='';
-  toggleCart();
-}
-
-renderCategories();
-renderMenu();
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
