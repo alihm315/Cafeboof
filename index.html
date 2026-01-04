@@ -277,9 +277,14 @@ const items = [
      {name:'دمنوش سرماخوردگی',price:130000,cat:'چای و دمنوش',img:'images/tea.jpg'},
  {name:'200CC هات چاکلت',price:150000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
   {name:'400CC هات چاکلت',price:200000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
-  {name:'200CC مارشمالو چاکلت',price:150000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
-  {name:'400CC هات چاکلت',price:200000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
-  {name:'200CC وایت چاکلت',price:150000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
+  {name:'200CC شیر ماسالا',price:140000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
+  {name:'400CC شیر ماسالا',price:190000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
+  {name:'200CC چای کرک',price:140000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
+  {name:'400CC چای کرک',price:190000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
+  {name:'200CC مارشمالو چاکلت',reipe:'مارشمالو، پودر هات چاکلت، شیر',price:150000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
+  {name:'400CC مارشمالو چاکلت',price:200000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
+  {name:'200CC وایت چاکلت',price:140000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
+  {name:'400CC وایت چاکلت',price:190000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg'},
  {name:'آبمیوه',price:50000,cat:'نوشیدنی سرد',img:'images/juice.jpg'},
  {name:'شیک موز',price:70000,cat:'شیک',img:'images/milkshake.jpg'},
  {name:'ساندویچ',price:120000,cat:'پیش غذا',img:'images/sandwich.jpg'},
@@ -310,13 +315,21 @@ function renderMenu(){
   const search = document.getElementById('searchBox').value.toLowerCase();
   items.filter(i=> (currentCat==='همه'||i.cat===currentCat) && i.name.toLowerCase().includes(search))
   .forEach(i=>{
-    m.innerHTML+=`
-    <div class="item">
-      <img src="${i.img}">
-      <h3>${i.name}</h3>
-      <span>${i.price.toLocaleString()} تومان</span>
-      <button onclick="addToCart('${i.name}',${i.price})">افزودن</button>
-    </div>`;
+    m.innerHTML += `
+  <div class="item">
+    <img src="${i.img}">
+    <h3>${i.name}</h3>
+    <span>${i.price.toLocaleString()} تومان</span>
+
+    <div class="recipe-toggle" onclick="toggleRecipe(this)">
+      📄 رسپی
+    </div>
+    <div class="recipe-text">
+      ${i.recipe}
+    </div>
+
+    <button onclick="addToCart('${i.name}',${i.price})">افزودن</button>
+  </div>`;
   });
 }
 
