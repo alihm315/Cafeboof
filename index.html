@@ -176,6 +176,7 @@ header h1 {
   text-align: center;
   margin-top: 8px;
   font-weight: bold;
+  line-height: 1.4;
 }
 #orderForm {
   margin-top: 10px;
@@ -312,7 +313,16 @@ function renderCart(){
       </div>
     </div>`;
   }
-  t.innerText='جمع کل: '+sum.toLocaleString()+' تومان';
+
+  // ارزش افزوده 10٪
+  let tax = Math.round(sum * 0.1);
+  let finalSum = sum + tax;
+
+  t.innerHTML=`جمع آیتم‌ها: ${sum.toLocaleString()} تومان
+  <br>-------------------<br>
+  ارزش افزوده (10٪): ${tax.toLocaleString()} تومان
+  <br>جمع کل فاکتور: ${finalSum.toLocaleString()} تومان`;
+
   countSpan.innerText=totalQty;
 }
 
@@ -344,8 +354,15 @@ function submitOrder(){
     alert('سبد خرید خالی است!');
     return;
   }
-  console.log('سفارش ثبت شد:', {customer:name,table,cart});
-  alert('سفارش شما ثبت شد!');
+
+  let sum = 0;
+  for(let i in cart) sum += cart[i].price*cart[i].qty;
+  let tax = Math.round(sum*0.1);
+  let finalSum = sum + tax;
+
+  console.log('سفارش ثبت شد:', {customer:name,table,cart,finalSum});
+  alert(`سفارش شما ثبت شد!\nجمع کل: ${finalSum.toLocaleString()} تومان`);
+
   cart={};
   renderCart();
   document.getElementById('customerName').value='';
