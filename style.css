@@ -122,3 +122,25 @@ header p { color: #d4f2d0; margin-top: 5px; font-size: 14px; }
 #checkout:hover { background: #57c78d; }
 #close-cart { background: #ff5c5c; color: #fff; }
 #close-cart:hover { background: #ff8a8a; }
+
+recipe-text {
+  display: none;
+  font-size: 11px;
+  color: #cfeee0;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* وقتی باز می‌شود */
+.recipe-text.show {
+  display: block;
+}
+
+/* دکمه رسپی */
+.recipe-toggle {
+  font-size: 12px;
+  color: #7fffb2;
+  cursor: pointer;
+  margin-top: 4px;
+  display: inline-block;
+}
