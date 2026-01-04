@@ -144,3 +144,23 @@ recipe-text {
   margin-top: 4px;
   display: inline-block;
 }
+
+recipe-text {
+  display: none;
+  font-size: 11px;
+  color: #cfeee0;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.recipe-text.show {
+  display: block;
+}
+
+.recipe-toggle {
+  font-size: 12px;
+  color: #7fffb2;
+  cursor: pointer;
+  margin-top: 4px;
+  display: inline-block;
+}
