@@ -87,7 +87,15 @@ function updateCart() {
     cartItemsDiv.appendChild(row);
   });
 
-  cartTotalDiv.textContent = `جمع کل: ${total.toLocaleString()} تومان`;
+  // ارزش افزوده 10٪
+  let tax = Math.round(total * 0.1);
+  let finalTotal = total + tax;
+
+  cartTotalDiv.innerHTML = `جمع آیتم‌ها: ${total.toLocaleString()} تومان
+  <br>-------------------<br>
+  ارزش افزوده (10٪): ${tax.toLocaleString()} تومان
+  <br>جمع کل فاکتور: ${finalTotal.toLocaleString()} تومان`;
+
   cartCount.textContent = count;
 }
 
@@ -109,11 +117,16 @@ document.getElementById('checkout').onclick = () => {
     return;
   }
 
+  let total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+  let tax = Math.round(total * 0.1);
+  let finalTotal = total + tax;
+
   alert(
     `سفارش ثبت شد ✅
 نام: ${name}
 میز: ${table}
-تعداد آیتم: ${cart.reduce((s,i)=>s+i.qty,0)}`
+تعداد آیتم: ${cart.reduce((s,i)=>s+i.qty,0)}
+جمع کل: ${finalTotal.toLocaleString()} تومان`
   );
 
   cart = [];
