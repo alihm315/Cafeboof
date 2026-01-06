@@ -1,115 +1,170 @@
 let cart = [];
+let menuData = [
+ {name:'اسپرسو سینگل',price:110000,cat:'بار قهوه',img:'images/coffee.jpg',recipe:'یک شات عصاره اسپرسو'},
+  {name:'اسپرسو دابل',price:110000,cat:'بار قهوه',img:'images/coffee.jpg',recipe:'دو شات عصاره اسپرسو'},
+ {name:'لاته ماچا نارگیل',price:250000,cat:'بار قهوه',img:'images/latte.jpg',recipe:' دو گرم ماچا ، شیر، سیروپ نارگیل'},
+ {name:'لاته ماچا',price:250000,cat:'بار قهوه',img:'images/latte.jpg',recipe:' دو گرم ماچا ، شیر '},
+ {name:'ماچا',price:170000,cat:'بار قهوه',img:'images/latte.jpg',recipe:' دو گرم ماچا، آب داغ'},
+ {name:'امریکانو سینگل',price:110000,cat:'بار قهوه',img:'images/coffee.jpg',recipe:'یک شات عصاره اسپرسو، آب جوش'},
+ {name:'امریکانو دابل',price:110000,cat:'بار قهوه',img:'images/coffee.jpg',recipe:'دو شات عصاره اسپرسو، آب جوش'},
+ {name:'لاته',price:150000,cat:'بار قهوه',img:'images/coffee.jpg',recipe:'یک شات اسپرسو، شیر'},
+ {name:'آیس لاته',price:160000,cat:'بار قهوه',img:'images/coffee.jpg',recipe:'دو شات اسپرسو، شیر، یخ'},
+ {name:'لاته ماسالا',price:170000,cat:'بار قهوه',img:'images/latte.jpg',recipe:'پودر ماسالا، شیر، یک شات اسپرسو'},
+ {name:'فراپاچینو',price:170000,cat:'بار قهوه',img:'images/latte.jpg',recipe:'شیر، سیروپ کارامل، دو شات اسپرسو، یخ بلند شده'},
+ {name:'موکا',price:160000,cat:'بار قهوه',img:'images/latte.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'کارامل ماکیاتو',price:160000,cat:'بار قهوه',img:'images/latte.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'فندق ماکیاتو',price:160000,cat:'بار قهوه',img:'images/latte.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'وانیل ماکیاتو',price:160000,cat:'بار قهوه',img:'images/latte.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'لوتوس ماکیاتو',price:160000,cat:'بار قهوه',img:'images/latte.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'نارگیل ماکیاتو',price:160000,cat:'بار قهوه',img:'images/latte.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'آیس موکا',price:160000,cat:'بار قهوه',img:'images/latte.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'آیس کارامل',price:160000,cat:'بار قهوه',img:'images/latte.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'آیس فندق',price:160000,cat:'بار قهوه',img:'images/latte.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'آیس وانیل',price:160000,cat:'بار قهوه',img:'images/latte.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'آیس لوتوس',price:160000,cat:'بار قهوه',img:'images/latte.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'آیس نارگیل',price:160000,cat:'بار قهوه',img:'images/latte.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'یونانی',price:150000,cat:'بار قهوه',img:'images/latte.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'قهوه ترک',price:110000,cat:'بار قهوه',img:'images/latte.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'چای لیوانی',price:75000,cat:'چای و دمنوش',img:'images/tea.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'چای سبز',price:120000,cat:'چای و دمنوش',img:'images/tea.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'چای ترش',price:120000,cat:'چای و دمنوش',img:'images/tea.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'چای مراکشی',price:120000,cat:'چای و دمنوش',img:'images/tea.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'دمنوش بهارنارنج-به لیمو',price:120000,cat:'چای و دمنوش',img:'images/tea.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'دمنوش گل گاو زبان',price:120000,cat:'چای و دمنوش',img:'images/tea.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'دمنوش آرامش',price:130000,cat:'چای و دمنوش',img:'images/tea.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'دمنوش سرماخوردگی',price:130000,cat:'چای و دمنوش',img:'images/tea.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'200CC هات چاکلت',price:150000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'400CC هات چاکلت',price:200000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'200CC شیر ماسالا',price:140000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'400CC شیر ماسالا',price:190000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'200CC چای کرک',price:140000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'400CC چای کرک',price:190000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'200CC مارشمالو چاکلت',price:150000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'400CC مارشمالو چاکلت',price:200000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'200CC وایت چاکلت',price:140000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'400CC وایت چاکلت',price:190000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'200CC شیر پسته گرم',price:200000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'400CC شیر پسته گرم',price:300000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'200CC شیر نوتلا',price:200000,cat:'نوشیدنی گرم',img:'images/hotchoco.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'نوشیدنی محصوص بوف',price:160000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'نوشیدنی محصوص علی',price:150000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'موهیتو',price:160000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+  {name:'رد موهیتو',price:160000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'لیموناد',price:150000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'پیناکولادا',price:150000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شیر موز',price:160000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+{name:'شیر موز قهوه',price:200000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شیر پسته',price:160000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'اسموتی توت فرنگی',price:180000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+  {name:'اسموتی استوایی',price:190000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'اسموتی ترش',price:180000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'اسموتی سیب لیمو',price:180000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'موکتل بلوبری',price:140000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'موکتل توت فرنگی',price:140000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شربت زعفران',price:140000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شربت گلاب',price:140000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شربت سکنجبین',price:140000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شربت بهارنارنج',price:140000,cat:'نوشیدنی سرد',img:'images/juice.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شیک نوتلا',price:195000,cat:'شیک',img:'images/milkshake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+  {name:'شیک کروسان',price:180000,cat:'شیک',img:'images/milkshake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شیک پسته',price:220000,cat:'شیک',img:'images/milkshake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شیک بیسکویت oreo',price:195000,cat:'شیک',img:'images/milkshake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شیک کره بادام زمینی',price:195000,cat:'شیک',img:'images/milkshake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شیک معجون',price:235000,cat:'شیک',img:'images/milkshake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شیک نوتلا کره بادام زمینی',price:230000,cat:'شیک',img:'images/milkshake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شیک وانیل',price:150000,cat:'شیک',img:'images/milkshake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شیک موز وانیل',price:180000,cat:'شیک',img:'images/milkshake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شیک شکلات',price:150000,cat:'شیک',img:'images/milkshake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شیک موز شکلات',price:180000,cat:'شیک',img:'images/milkshake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شیک اسپرسو',price:195000,cat:'شیک',img:'images/milkshake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شیک توت فرنگی',price:195000,cat:'شیک',img:'images/milkshake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شیک نوتلا توت فرنگی',price:230000,cat:'شیک',img:'images/milkshake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شیک ترش',price:180000,cat:'شیک',img:'images/milkshake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+  {name:'شیک موز بیسکویت مادر',price:210000,cat:'شیک',img:'images/milkshake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'شیک انرژی زا',price:195000,cat:'شیک',img:'images/milkshake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'سیب زمینی ساده',price:180000,cat:'پیش غذا',img:'images/sandwich.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+  {name:'سیب زمینی مخصوص بوف',price:320000,cat:'پیش غذا',img:'images/sandwich.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+  {name:'سیب زمینی با سس آلفردو',price:320000,cat:'پیش غذا',img:'images/sandwich.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'سیب زمینی با سس دیپ چیز',price:280000,cat:'پیش غذا',img:'images/sandwich.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'سیب زمینی با سس قارچ',price:280000,cat:'پیش غذا',img:'images/sandwich.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+  {name:'سالاد سزار',price:290000,cat:'پیش غذا',img:'images/sandwich.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+  {name:'فیله اضافی',price:80000,cat:'پیش غذا',img:'images/sandwich.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'کلاب',price:195000,cat:'پیش غذا',img:'images/sandwich.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'همبرگر',price:280000,cat:'غذا اصلی',img:'images/steak.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+  {name:'دابل برگر',price:380000,cat:'غذا اصلی',img:'images/steak.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'پاستا آلفردو',price:340000,cat:'غذا اصلی',img:'images/steak.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'استیک مرغ',price:310000,cat:'غذا اصلی',img:'images/steak.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'استیک گوشت 150 گرمی',price:600000,cat:'غذا اصلی',img:'images/steak.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'استیک گوشت 300 گرمی',price:950000,cat:'غذا اصلی',img:'images/steak.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'ساندویچ مرغ با سس قارچ',price:250000,cat:'غذا اصلی',img:'images/steak.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'ساندویچ هات داگ با سس قارچ',price:230000,cat:'غذا اصلی',img:'images/steak.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'املت 1 نفره',price:140000,cat:'صبحانه',img:'images/pancake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'املت 2 نفره',price:180000,cat:'صبحانه',img:'images/pancake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'املت سوسیس 1 نفره',price:180000,cat:'صبحانه',img:'images/pancake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'املت سوسیس 2 نفره',price:220000,cat:'صبحانه',img:'images/pancake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'سوسیس تخم مرغ 1 نفره',price:140000,cat:'صبحانه',img:'images/pancake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'سوسیس تخم مرغ 2 نفره',price:180000,cat:'صبحانه',img:'images/pancake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'کیک روز',price:130000,cat:'کیک و دسر',img:'images/cheesecake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+  {name:'آفوگاتو',price:180000,cat:'کیک و دسر',img:'images/cheesecake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+ {name:'بستنی لیوانی (شکلات-وانیل)',price:140000,cat:'کیک و دسر',img:'images/cheesecake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
+];
 
-const menuItems = document.querySelectorAll('.item');
-const cartItemsDiv = document.getElementById('cart-items');
-const cartSubtotalDiv = document.getElementById('cart-subtotal');
-const cartTaxDiv = document.getElementById('cart-tax');
-const cartTotalDiv = document.getElementById('cart-total');
+const menu = document.getElementById('menu');
+const categoriesDiv = document.getElementById('categories');
 
-const addButtons = document.querySelectorAll('.add-btn');
-const categoryButtons = document.querySelectorAll('.categories button');
-
-const cartIcon = document.getElementById('cart-icon');
-const cartPopup = document.getElementById('cart-popup');
-const closeCartBtn = document.getElementById('close-cart');
-const cartCount = document.getElementById('cart-count');
-
-// دسته بندی
-categoryButtons.forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    const category = e.target.dataset.category;
-    categoryButtons.forEach(b => b.classList.remove('active'));
-    e.target.classList.add('active');
-
-    menuItems.forEach(item => {
-      item.style.display =
-        category === 'all' || item.classList.contains(category)
-          ? 'block'
-          : 'none';
-    });
+function renderCategories(){
+  let cats = ['همه',...new Set(menuData.map(i=>i.cat))];
+  categoriesDiv.innerHTML='';
+  cats.forEach(c=>{
+    let b=document.createElement('button');
+    b.textContent=c;
+    b.onclick=()=>renderMenu(c);
+    categoriesDiv.appendChild(b);
   });
-});
+}
 
-// افزودن به سبد
-addButtons.forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    const item = e.target.closest('.item');
-    const name = item.querySelector('h3').textContent;
-    const price = parseInt(item.querySelector('.price').dataset.price);
-
-    const existing = cart.find(i => i.name === name);
-    if (existing) {
-      existing.qty++;
-    } else {
-      cart.push({ name, price, qty: 1 });
-    }
-    updateCart();
-  });
-});
-
-// آپدیت سبد
-function updateCart() {
-  cartItemsDiv.innerHTML = '';
-  let subtotal = 0;
-  let count = 0;
-
-  cart.forEach((item, index) => {
-    subtotal += item.price * item.qty;
-    count += item.qty;
-
-    const row = document.createElement('div');
-    row.className = 'cart-row';
-
-    row.innerHTML = `
-      <span>${item.name} × ${item.qty}</span>
-      <div>
-        <button onclick="changeQty(${index},-1)">−</button>
-        <button onclick="changeQty(${index},1)">+</button>
-      </div>
+function renderMenu(cat='همه'){
+  menu.innerHTML='';
+  menuData.filter(i=>cat==='همه'||i.cat===cat).forEach(item=>{
+    let d=document.createElement('div');
+    d.className='item';
+    d.innerHTML=`
+      <img src="${item.img}">
+      <h3>${item.name}</h3>
+      <span>${item.price.toLocaleString()} تومان</span>
+      <div class="recipe-toggle">📄 رسپی</div>
+      <div class="recipe-text">${item.recipe||''}</div>
+      <button>افزودن</button>
     `;
-    cartItemsDiv.appendChild(row);
+    d.querySelector('.recipe-toggle').onclick=()=>{
+      d.querySelector('.recipe-text').classList.toggle('show');
+    };
+    d.querySelector('button').onclick=()=>addToCart(item);
+    menu.appendChild(d);
   });
-
-  const tax = Math.round(subtotal * 0.10);
-  const total = subtotal + tax;
-
-  cartSubtotalDiv.textContent = `جمع آیتم‌ها: ${subtotal.toLocaleString()} تومان`;
-  cartTaxDiv.textContent = `ارزش افزوده (۱۰٪): ${tax.toLocaleString()} تومان`;
-  cartTotalDiv.textContent = `جمع کل فاکتور: ${total.toLocaleString()} تومان`;
-
-  cartCount.textContent = count;
 }
 
-function changeQty(index, val) {
-  cart[index].qty += val;
-  if (cart[index].qty <= 0) cart.splice(index, 1);
+function addToCart(item){
+  let f=cart.find(i=>i.name===item.name);
+  f?f.qty++:cart.push({...item,qty:1});
   updateCart();
 }
 
-// باز و بسته شدن سبد
-cartIcon.onclick = () => cartPopup.classList.toggle('hidden');
-closeCartBtn.onclick = () => cartPopup.classList.add('hidden');
+function updateCart(){
+  document.getElementById('cart-items').innerHTML=
+    cart.map(i=>`${i.name} × ${i.qty}`).join('<br>');
+  document.getElementById('cart-total').textContent=
+    cart.reduce((s,i)=>s+i.price*i.qty,0).toLocaleString()+' تومان';
+  document.getElementById('cart-count').textContent=
+    cart.reduce((s,i)=>s+i.qty,0);
+}
 
-// ثبت سفارش
-document.getElementById('checkout').onclick = () => {
-  const name = document.getElementById('customer-name').value.trim();
-  const table = document.getElementById('table-number').value.trim();
-  const note = document.getElementById('customer-note').value.trim();
-
-  if (!name || !table || cart.length === 0) {
-    alert('نام، شماره میز و آیتم‌ها را کامل کنید');
-    return;
-  }
-
-  alert(
-`سفارش ثبت شد ✅
-نام: ${name}
-میز: ${table}
-توضیحات: ${note || '—'}
-`
-  );
-
-  cart = [];
-  updateCart();
-  cartPopup.classList.add('hidden');
+document.getElementById('cart-icon').onclick=()=>{
+  document.getElementById('cart-popup').classList.toggle('hidden');
 };
+document.getElementById('close-cart').onclick=()=>{
+  document.getElementById('cart-popup').classList.add('hidden');
+};
+
+renderCategories();
+renderMenu();
