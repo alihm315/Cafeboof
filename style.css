@@ -16,26 +16,41 @@ header {
 
 header h1 { font-size: 26px; margin: 0; }
 
-.categories {
+categories {
   display: flex;
+  gap: 10px;
+  padding: 14px 12px;
   overflow-x: auto;
-  padding: 10px;
-  gap: 8px;
+  scrollbar-width: none;
+}
+.categories::-webkit-scrollbar {
+  display: none;
 }
 
 .categories button {
-  background: #1d3a2b;
-  color: #cfeee0;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 20px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.08);
+  color: #eaf5ee;
+  font-size: 13px;
+  backdrop-filter: blur(6px);
   cursor: pointer;
-  flex-shrink: 0;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
-.categories button.active { background: #3fa46a; color: #08150f; }
-.categories button:hover { background: #57c78d; }
+.categories button:hover {
+  background: rgba(127,255,178,0.2);
+  transform: translateY(-1px);
+}
+
+.categories button.active {
+  background: linear-gradient(135deg, #7fffb2, #3fa46a);
+  color: #08150f;
+  font-weight: bold;
+  box-shadow: 0 6px 15px rgba(63,164,106,0.4);
+}
 
 #menu {
   padding: 10px;
