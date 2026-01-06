@@ -1,187 +1,93 @@
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap');
-
 body {
   margin: 0;
   font-family: Vazirmatn, sans-serif;
-  background: #0a0a0a;
+  background: #000;
   color: #eaf5ee;
 }
 
 /* هدر */
 header {
   text-align: center;
-  padding: 30px 10px;
+  padding: 50px 10px; /* افزایش ارتفاع */
+  height: 250px;
   background: url('images/header-bg.jpg') no-repeat center center;
   background-size: cover;
   color: #fff;
-  text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
 }
 
-header h1 {
-  font-size: 28px;
-  margin: 0;
-  letter-spacing: 1px;
-}
+header h1 { font-size: 26px; margin: 0; }
 
-/* لینک‌ها */
-.top-links {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  padding: 8px 0;
-}
-
-.top-links img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  transition: transform 0.3s;
-}
-.top-links img:hover { transform: scale(1.2); }
-
-/* دسته بندی */
+/* دسته بندی sticky و شیک */
 .categories {
   display: flex;
   overflow-x: auto;
-  padding: 12px 10px;
+  padding: 10px;
   gap: 10px;
   position: sticky;
   top: 0;
-  background: #0a0a0a;
+  background: rgba(0,0,0,0.9);
   z-index: 100;
-  border-bottom: 1px solid #1d3a2b;
 }
 
 .categories button {
   background: #1d3a2b;
   color: #cfeee0;
   border: none;
-  padding: 10px 20px;
-  border-radius: 30px;
+  padding: 8px 16px;
+  border-radius: 25px;
   cursor: pointer;
   flex-shrink: 0;
-  transition: all 0.3s ease;
+  transition: 0.3s;
+  font-weight: bold;
   position: relative;
-  font-weight: 500;
 }
 
-.categories button.active {
-  background: #3fa46a;
-  color: #08150f;
-}
-
-.categories button.active::after {
+.categories button.active::after{
   content: '';
   position: absolute;
-  bottom: -6px;
-  left: 15%;
-  width: 70%;
-  height: 4px;
-  background: #ffc857;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 3px;
+  background: #3fa46a;
   border-radius: 2px;
-  transition: all 0.3s ease;
 }
 
-.categories button:hover {
-  transform: scale(1.1);
-  background: #57c78d;
-}
+.categories button:hover { background: #57c78d; transform: scale(1.05); }
 
-/* جستجو */
-#searchBox {
-  display: block;
-  width: calc(100% - 20px);
-  margin: 10px auto;
-  padding: 8px 12px;
-  border-radius: 25px;
-  border: none;
-  outline: none;
-  font-size: 14px;
-  background: #1d3a2b;
-  color: #eaf5ee;
-  transition: 0.3s;
-}
-#searchBox:focus { background: #3fa46a; color: #08150f; }
-
-/* منو */
+/* منو آیتم‌ها */
 #menu {
   padding: 10px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 15px;
+  gap: 12px;
 }
 
 .item {
   background: #1a2e24;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.item:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-}
+.item:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.6); }
 
-.item img {
-  width: 100%;
-  height: 110px;
-  object-fit: cover;
-  border-bottom: 2px solid #3fa46a;
-}
+.item img { width: 100%; height: 90px; object-fit: cover; }
 
-.item h3 {
-  margin: 6px 0 2px;
-  font-size: 14px;
-  text-align: center;
-}
+.item h3 { margin: 6px 0; font-size: 14px; }
+.item span { color: #7fffb2; font-weight: bold; font-size: 12px; }
 
-.item span {
-  display: block;
-  margin: 2px 0;
-  color: #7fffb2;
-  font-weight: bold;
-  font-size: 12px;
-  text-align: center;
-}
-
-.item button {
-  width: 90%;
-  margin: 6px auto 10px;
-  display: block;
-  background: #3fa46a;
-  border: none;
-  border-radius: 12px;
-  padding: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background 0.3s, transform 0.2s;
-}
-.item button:hover {
-  background: #57c78d;
-  transform: scale(1.05);
-}
+.item button { width: 100%; background: #3fa46a; border: none; border-radius: 6px; padding: 6px; margin-top: 4px; cursor: pointer; }
+.item button:hover { background: #57c78d; }
 
 /* رسپی */
-.recipe-toggle {
-  font-size: 12px;
-  color: #7fffb2;
-  cursor: pointer;
-  margin-top: 4px;
-  display: inline-block;
-  transition: color 0.2s;
-}
-.recipe-toggle:hover { color: #ffc857; }
-
-.recipe-text {
-  display: none;
-  font-size: 11px;
-  color: #cfeee0;
-  margin: 4px 6px;
-  line-height: 1.4;
-}
+.recipe-text { display: none; font-size: 11px; color: #cfeee0; margin-top: 4px; line-height: 1.4; }
 .recipe-text.show { display: block; }
+.recipe-toggle { font-size: 12px; color: #7fffb2; cursor: pointer; margin-top: 4px; display: inline-block; }
+.recipe-toggle:hover { color:#57c78d; }
 
 /* سبد خرید */
 #cart-icon {
@@ -204,44 +110,27 @@ header h1 {
   position: fixed;
   bottom: 60px;
   right: 15px;
-  width: 280px;
-  max-height: 340px;
+  width: 260px;
+  max-height: 300px;
   overflow-y: auto;
   background: #1d3a2b;
-  padding: 10px;
+  padding: 8px;
   border-radius: 12px;
   font-size: 13px;
   z-index: 999;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
+
 #cart-popup.hidden { display: none; }
-
-#cart-items div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 3px;
-}
-
-#cart-popup input {
-  width: 48%;
-  padding: 5px;
-  border-radius: 6px;
-  border: none;
-  font-size: 12px;
-  margin-top: 4px;
-}
-#cart-popup button {
-  padding: 6px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-size: 13px;
-  transition: 0.3s;
-}
+#cart-popup input { width: 48%; padding: 5px; border-radius: 6px; border: none; font-size: 12px; }
+#cart-popup button { padding: 6px; border-radius: 6px; border: none; cursor: pointer; font-size: 13px; transition: 0.3s; }
 #checkout { background: #3fa46a; color: #08150f; }
 #checkout:hover { background: #57c78d; }
 #close-cart { background: #ff5c5c; color: #fff; }
 #close-cart:hover { background: #ff8a8a; }
+
+/* آیکون لینک‌ها */
+.top-links img { width: 26px; height: 26px; object-fit: contain; transition: 0.2s; }
+.top-links img:hover { transform: scale(1.15); }
