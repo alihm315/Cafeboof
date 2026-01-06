@@ -1,5 +1,4 @@
-let cart = [];
-let menuData = [
+const items = [
  {name:'اسپرسو سینگل',price:110000,cat:'بار قهوه',img:'images/coffee.jpg',recipe:'یک شات عصاره اسپرسو'},
   {name:'اسپرسو دابل',price:110000,cat:'بار قهوه',img:'images/coffee.jpg',recipe:'دو شات عصاره اسپرسو'},
  {name:'لاته ماچا نارگیل',price:250000,cat:'بار قهوه',img:'images/latte.jpg',recipe:' دو گرم ماچا ، شیر، سیروپ نارگیل'},
@@ -109,62 +108,102 @@ let menuData = [
  {name:'بستنی لیوانی (شکلات-وانیل)',price:140000,cat:'کیک و دسر',img:'images/cheesecake.jpg',recipe:'قهوه آسیاب شده، آب داغ'},
 ];
 
-const menu = document.getElementById('menu');
-const categoriesDiv = document.getElementById('categories');
+let cart = [];
+let currentCat = 'همه';
+const cats = ['همه', ...new Set(items.map(i=>i.cat))];
 
 function renderCategories(){
-  let cats = ['همه',...new Set(menuData.map(i=>i.cat))];
-  categoriesDiv.innerHTML='';
-  cats.forEach(c=>{
-    let b=document.createElement('button');
-    b.textContent=c;
-    b.onclick=()=>renderMenu(c);
-    categoriesDiv.appendChild(b);
+  const c = document.getElementById('categories');
+  c.innerHTML='';
+  cats.forEach(cat=>{
+    const b=document.createElement('button');
+    b.innerText=cat;
+    if(cat===currentCat) b.classList.add('active');
+    b.onclick=()=>{currentCat=cat; renderMenu(); renderCategories();}
+    c.appendChild(b);
   });
 }
 
-function renderMenu(cat='همه'){
-  menu.innerHTML='';
-  menuData.filter(i=>cat==='همه'||i.cat===cat).forEach(item=>{
-    let d=document.createElement('div');
-    d.className='item';
-    d.innerHTML=`
-      <img src="${item.img}">
-      <h3>${item.name}</h3>
-      <span>${item.price.toLocaleString()} تومان</span>
-      <div class="recipe-toggle">📄 رسپی</div>
-      <div class="recipe-text">${item.recipe||''}</div>
-      <button>افزودن</button>
-    `;
-    d.querySelector('.recipe-toggle').onclick=()=>{
-      d.querySelector('.recipe-text').classList.toggle('show');
-    };
-    d.querySelector('button').onclick=()=>addToCart(item);
-    menu.appendChild(d);
+function renderMenu(){
+  const m=document.getElementById('menu');
+  m.innerHTML='';
+  const search = document.getElementById('searchBox').value.toLowerCase();
+  items.filter(i=> (currentCat==='همه'||i.cat===currentCat) && i.name.toLowerCase().includes(search))
+  .forEach(i=>{
+    m.innerHTML+=`
+    <div class="item">
+      <img src="${i.img}">
+      <h3>${i.name}</h3>
+      <span>${i.price.toLocaleString()} تومان</span>
+
+      <div class="recipe-toggle" onclick="toggleRecipe(this)">📄 رسپی</div>
+      <div class="recipe-text">${i.recipe || ''}</div>
+
+      <button onclick="addToCart('${i.name}',${i.price})">افزودن</button>
+    </div>`;
   });
 }
 
-function addToCart(item){
-  let f=cart.find(i=>i.name===item.name);
-  f?f.qty++:cart.push({...item,qty:1});
+function addToCart(name, price){
+  const existing = cart.find(i=>i.name===name);
+  if(existing) existing.qty++; else cart.push({name,price,qty:1});
   updateCart();
 }
 
 function updateCart(){
-  document.getElementById('cart-items').innerHTML=
-    cart.map(i=>`${i.name} × ${i.qty}`).join('<br>');
-  document.getElementById('cart-total').textContent=
-    cart.reduce((s,i)=>s+i.price*i.qty,0).toLocaleString()+' تومان';
-  document.getElementById('cart-count').textContent=
-    cart.reduce((s,i)=>s+i.qty,0);
+  const c = document.getElementById('cart-items');
+  const t = document.getElementById('cart-total');
+  const countSpan = document.getElementById('cart-count');
+  c.innerHTML='';
+  let sum=0, totalQty=0;
+
+  cart.forEach((item,index)=>{
+    sum+=item.price*item.qty;
+    totalQty+=item.qty;
+    c.innerHTML+=`
+    <div class="cart-item">
+      ${item.name}
+      <div>
+        <button onclick="changeQty(${index},-1)">-</button>
+        ${item.qty}
+        <button onclick="changeQty(${index},1)">+</button>
+      </div>
+    </div>`;
+  });
+
+  // ارزش افزوده 10٪
+  const tax = Math.round(sum*0.1);
+  const total = sum + tax;
+
+  t.innerHTML = `
+    جمع کل: ${sum.toLocaleString()} تومان<br>
+    ارزش افزوده 10٪: ${tax.toLocaleString()} تومان<br>
+    جمع فاکتور: ${total.toLocaleString()} تومان
+  `;
+  countSpan.innerText=totalQty;
 }
 
-document.getElementById('cart-icon').onclick=()=>{
-  document.getElementById('cart-popup').classList.toggle('hidden');
-};
-document.getElementById('close-cart').onclick=()=>{
-  document.getElementById('cart-popup').classList.add('hidden');
-};
+function changeQty(index,d){
+  cart[index].qty+=d;
+  if(cart[index].qty<=0) cart.splice(index,1);
+  updateCart();
+}
+
+document.getElementById('cart-icon').onclick=()=>document.getElementById('cart-popup').classList.toggle('hidden');
+document.getElementById('close-cart').onclick=()=>document.getElementById('cart-popup').classList.add('hidden');
+
+document.getElementById('checkout').onclick=()=>{
+  const name=document.getElementById('customer-name').value.trim();
+  const table=document.getElementById('table-number').value.trim();
+  if(!name || !table || cart.length===0){ alert('نام، شماره میز و آیتم‌ها را کامل کنید'); return; }
+  alert(`سفارش ثبت شد ✅\nنام: ${name}\nمیز: ${table}\nتعداد آیتم: ${cart.reduce((s,i)=>s+i.qty,0)}`);
+  cart=[]; updateCart(); document.getElementById('cart-popup').classList.add('hidden');
+}
+
+// تابع باز/بسته کردن رسپی
+function toggleRecipe(el){
+  el.nextElementSibling.classList.toggle('show');
+}
 
 renderCategories();
 renderMenu();
