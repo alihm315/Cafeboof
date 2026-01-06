@@ -5,7 +5,6 @@ body {
   font-family: Vazirmatn, sans-serif;
   background: #0a0a0a;
   color: #eaf5ee;
-  scroll-behavior: smooth;
 }
 
 /* هدر */
@@ -19,22 +18,15 @@ header {
 }
 
 header h1 {
-  font-size: 30px;
+  font-size: 28px;
   margin: 0;
   letter-spacing: 1px;
-  animation: fadeInDown 1s ease;
-}
-
-/* انیمیشن هدر */
-@keyframes fadeInDown {
-  0% { opacity:0; transform: translateY(-20px); }
-  100% { opacity:1; transform: translateY(0); }
 }
 
 /* لینک‌ها */
 .top-links {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   justify-content: center;
   padding: 8px 0;
 }
@@ -45,35 +37,32 @@ header h1 {
   object-fit: contain;
   transition: transform 0.3s;
 }
-.top-links img:hover { transform: scale(1.3); }
+.top-links img:hover { transform: scale(1.2); }
 
-/* دسته بندی - اسلایدینگ و انیمیشنی */
+/* دسته بندی */
 .categories {
   display: flex;
   overflow-x: auto;
   padding: 12px 10px;
-  gap: 12px;
+  gap: 10px;
   position: sticky;
   top: 0;
   background: #0a0a0a;
   z-index: 100;
   border-bottom: 1px solid #1d3a2b;
-  scrollbar-width: none; /* Firefox */
 }
-.categories::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
 .categories button {
   background: #1d3a2b;
   color: #cfeee0;
   border: none;
-  padding: 10px 22px;
-  border-radius: 35px;
+  padding: 10px 20px;
+  border-radius: 30px;
   cursor: pointer;
   flex-shrink: 0;
-  font-weight: 500;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
   position: relative;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  font-weight: 500;
 }
 
 .categories button.active {
@@ -94,9 +83,8 @@ header h1 {
 }
 
 .categories button:hover {
-  transform: translateY(-3px) scale(1.1);
+  transform: scale(1.1);
   background: #57c78d;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.5);
 }
 
 /* جستجو */
@@ -104,7 +92,7 @@ header h1 {
   display: block;
   width: calc(100% - 20px);
   margin: 10px auto;
-  padding: 10px 16px;
+  padding: 8px 12px;
   border-radius: 25px;
   border: none;
   outline: none;
@@ -115,43 +103,40 @@ header h1 {
 }
 #searchBox:focus { background: #3fa46a; color: #08150f; }
 
-/* منو - کارت‌ها و انیمیشن hover */
+/* منو */
 #menu {
-  padding: 15px;
+  padding: 10px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 15px;
 }
 
 .item {
   background: #1a2e24;
-  border-radius: 20px;
+  border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .item:hover {
-  transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.7);
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
 }
 
 .item img {
   width: 100%;
-  height: 120px;
+  height: 110px;
   object-fit: cover;
-  border-bottom: 3px solid #3fa46a;
-  transition: transform 0.4s ease;
+  border-bottom: 2px solid #3fa46a;
 }
-.item:hover img { transform: scale(1.08); }
 
 .item h3 {
-  margin: 8px 0 2px;
+  margin: 6px 0 2px;
   font-size: 14px;
   text-align: center;
-  transition: color 0.3s;
 }
+
 .item span {
   display: block;
   margin: 2px 0;
@@ -162,20 +147,20 @@ header h1 {
 }
 
 .item button {
-  width: 85%;
-  margin: 8px auto 12px;
+  width: 90%;
+  margin: 6px auto 10px;
   display: block;
   background: #3fa46a;
   border: none;
-  border-radius: 15px;
+  border-radius: 12px;
   padding: 6px;
   cursor: pointer;
   font-weight: 500;
-  transition: all 0.3s;
+  transition: background 0.3s, transform 0.2s;
 }
 .item button:hover {
   background: #57c78d;
-  transform: scale(1.07);
+  transform: scale(1.05);
 }
 
 /* رسپی */
@@ -185,9 +170,9 @@ header h1 {
   cursor: pointer;
   margin-top: 4px;
   display: inline-block;
-  transition: color 0.3s, transform 0.3s;
+  transition: color 0.2s;
 }
-.recipe-toggle:hover { color: #ffc857; transform: translateX(3px); }
+.recipe-toggle:hover { color: #ffc857; }
 
 .recipe-text {
   display: none;
@@ -213,9 +198,7 @@ header h1 {
   display: flex;
   align-items: center;
   gap: 6px;
-  transition: transform 0.3s;
 }
-#cart-icon:hover { transform: scale(1.1); }
 
 #cart-popup {
   position: fixed;
@@ -239,7 +222,7 @@ header h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 #cart-popup input {
