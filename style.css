@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap');
+
 body {
   margin: 0;
   font-family: Vazirmatn, sans-serif;
@@ -5,6 +7,7 @@ body {
   color: #eaf5ee;
 }
 
+/* هدر */
 header {
   text-align: center;
   padding: 30px 10px;
@@ -16,47 +19,96 @@ header {
 
 header h1 { font-size: 26px; margin: 0; }
 
+/* دسته بندی */
 .categories {
   display: flex;
   overflow-x: auto;
   padding: 10px;
   gap: 8px;
+  position: sticky;
+  top: 0;
+  background: #000;
+  z-index: 100;
 }
 
 .categories button {
   background: #1d3a2b;
   color: #cfeee0;
   border: none;
-  padding: 6px 12px;
-  border-radius: 20px;
+  padding: 8px 16px;
+  border-radius: 25px;
   cursor: pointer;
   flex-shrink: 0;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-.categories button.active { background: #3fa46a; color: #08150f; }
-.categories button:hover { background: #57c78d; }
+.categories button.active {
+  background: #3fa46a;
+  color: #08150f;
+}
 
+.categories button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 10%;
+  width: 80%;
+  height: 3px;
+  background: #ffc857;
+  border-radius: 2px;
+}
+
+.categories button:hover { transform: scale(1.05); background: #57c78d; }
+
+/* منو */
 #menu {
   padding: 10px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
 }
 
 .item {
   background: #1a2e24;
-  border-radius: 12px;
+  border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+  transition: transform 0.3s;
 }
 
-.item img { width: 100%; height: 90px; object-fit: cover; }
+.item:hover { transform: translateY(-5px); }
 
-.item h3 { margin: 0; font-size: 14px; }
-.item span { margin: 4px 0; color: #7fffb2; font-weight: bold; font-size: 12px; }
-.item button { width: 100%; background: #3fa46a; border: none; border-radius: 6px; padding: 4px; margin-top: 4px; cursor: pointer; }
+.item img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+.item h3 { margin: 5px 0 2px; font-size: 14px; }
+.item span { color: #7fffb2; font-weight: bold; font-size: 12px; }
+.item button { width: 100%; background: #3fa46a; border: none; border-radius: 8px; padding: 6px; margin-top: 4px; cursor: pointer; }
 .item button:hover { background: #57c78d; }
+
+/* رسپی */
+.recipe-toggle {
+  font-size: 12px;
+  color: #7fffb2;
+  cursor: pointer;
+  margin-top: 4px;
+  display: inline-block;
+  transition: color 0.2s;
+}
+.recipe-toggle:hover { color: #ffc857; }
+
+.recipe-text {
+  display: none;
+  font-size: 11px;
+  color: #cfeee0;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+.recipe-text.show { display: block; }
 
 /* سبد خرید */
 #cart-icon {
@@ -91,45 +143,22 @@ header h1 { font-size: 26px; margin: 0; }
   flex-direction: column;
   gap: 4px;
 }
-
 #cart-popup.hidden { display: none; }
 
 #cart-items div { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
 
-#cart-popup input { width: 48%; padding: 5px; border-radius: 6px; border: none; font-size: 12px; }
+#cart-popup input { width: 48%; padding: 5px; border-radius: 6px; border: none; font-size: 12px; margin-top:4px; }
 #cart-popup button { padding: 6px; border-radius: 6px; border: none; cursor: pointer; font-size: 13px; transition: 0.3s; }
 #checkout { background: #3fa46a; color: #08150f; }
 #checkout:hover { background: #57c78d; }
 #close-cart { background: #ff5c5c; color: #fff; }
 #close-cart:hover { background: #ff8a8a; }
 
-/* رسپی */
-.recipe-text {
-  display: none;
-  font-size: 11px;
-  color: #cfeee0;
-  margin-top: 4px;
-  line-height: 1.4;
-}
-
-.recipe-text.show { display: block; }
-
-.recipe-toggle {
-  font-size: 12px;
-  color: #7fffb2;
-  cursor: pointer;
-  margin-top: 4px;
-  display: inline-block;
-}
-.recipe-toggle:hover { color:#57c78d; }
-
-top-links img {
+/* top-links */
+.top-links img {
   width: 26px;
   height: 26px;
   object-fit: contain;
   transition: 0.2s;
 }
-
-.top-links img:hover {
-  transform: scale(1.15);
-}
+.top-links img:hover { transform: scale(1.15); }
