@@ -11,7 +11,10 @@ header {
   background: url('images/header-bg.jpg') no-repeat center center;
   background-size: cover;
   color: #fff;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
 }
+
+header h1 { font-size: 26px; margin: 0; }
 
 .categories {
   display: flex;
@@ -21,98 +24,112 @@ header {
 }
 
 .categories button {
-  background: linear-gradient(145deg,#1d3a2b,#12251b);
+  background: #1d3a2b;
   color: #cfeee0;
   border: none;
-  padding: 8px 16px;
-  border-radius: 30px;
+  padding: 6px 12px;
+  border-radius: 20px;
   cursor: pointer;
+  flex-shrink: 0;
   transition: 0.3s;
 }
 
-.categories button:hover {
-  transform: translateY(-2px);
-  background: #3fa46a;
-  color:#08150f;
-}
-
-.categories button.active {
-  background:#57c78d;
-  color:#08150f;
-}
+.categories button.active { background: #3fa46a; color: #08150f; }
+.categories button:hover { background: #57c78d; }
 
 #menu {
   padding: 10px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
 }
 
 .item {
   background: #1a2e24;
-  border-radius: 14px;
-  padding: 6px;
-  box-shadow: 0 4px 12px rgba(0,0,0,.4);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.4);
 }
 
-.item img {
-  width:100%;
-  height:100px;
-  object-fit:cover;
-  border-radius:10px;
+.item img { width: 100%; height: 90px; object-fit: cover; }
+
+.item h3 { margin: 0; font-size: 14px; }
+.item span { margin: 4px 0; color: #7fffb2; font-weight: bold; font-size: 12px; }
+.item button { width: 100%; background: #3fa46a; border: none; border-radius: 6px; padding: 4px; margin-top: 4px; cursor: pointer; }
+.item button:hover { background: #57c78d; }
+
+/* سبد خرید */
+#cart-icon {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background: #3fa46a;
+  color: #08150f;
+  padding: 8px 12px;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.item button {
-  width:100%;
-  background:#3fa46a;
-  border:none;
-  border-radius:8px;
-  padding:6px;
-  cursor:pointer;
+#cart-popup {
+  position: fixed;
+  bottom: 60px;
+  right: 15px;
+  width: 260px;
+  max-height: 300px;
+  overflow-y: auto;
+  background: #1d3a2b;
+  padding: 8px;
+  border-radius: 12px;
+  font-size: 13px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
+
+#cart-popup.hidden { display: none; }
+
+#cart-items div { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
+
+#cart-popup input { width: 48%; padding: 5px; border-radius: 6px; border: none; font-size: 12px; }
+#cart-popup button { padding: 6px; border-radius: 6px; border: none; cursor: pointer; font-size: 13px; transition: 0.3s; }
+#checkout { background: #3fa46a; color: #08150f; }
+#checkout:hover { background: #57c78d; }
+#close-cart { background: #ff5c5c; color: #fff; }
+#close-cart:hover { background: #ff8a8a; }
+
+/* رسپی */
+.recipe-text {
+  display: none;
+  font-size: 11px;
+  color: #cfeee0;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.recipe-text.show { display: block; }
 
 .recipe-toggle {
-  font-size:12px;
-  cursor:pointer;
-  color:#7fffb2;
-  margin-top:4px;
+  font-size: 12px;
+  color: #7fffb2;
+  cursor: pointer;
+  margin-top: 4px;
+  display: inline-block;
+}
+.recipe-toggle:hover { color:#57c78d; }
+
+top-links img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  transition: 0.2s;
 }
 
-.recipe-text {
-  display:none;
-  font-size:11px;
-  margin-top:4px;
-}
-
-.recipe-text.show {
-  display:block;
-}
-
-#cart-icon {
-  position:fixed;
-  bottom:15px;
-  right:15px;
-  background:#3fa46a;
-  padding:10px;
-  border-radius:50px;
-}
-
-.cart {
-  position:fixed;
-  bottom:70px;
-  right:15px;
-  background:#1d3a2b;
-  width:270px;
-  padding:10px;
-  border-radius:14px;
-}
-
-.hidden {display:none;}
-
-#cart-popup textarea {
-  width:100%;
-  margin-top:6px;
-  padding:6px;
-  border-radius:8px;
-  border:none;
+.top-links img:hover {
+  transform: scale(1.15);
 }
