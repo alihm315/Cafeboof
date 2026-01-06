@@ -1,72 +1,46 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
-  <meta charset="UTF-8">
-  <title>منوی کافه بوف</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>کافه بوف</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<div class="top-links">
+  <a href="https://instagram.com/kafeboof" target="_blank"><img src="images/insta.svg"></a>
+  <a href="https://wa.me/989388388937" target="_blank"><img src="images/whatts.svg"></a>
+  <a href="tel:09388388937"><img src="images/call.svg"></a>
+  <a href="https://maps.app.goo.gl/uykS7EjyRvsAzLGm6" target="_blank"><img src="images/map.svg"></a>
+  <a href="https://nshn.ir/25vbvh8IpxJ7e2" target="_blank"><img src="images/NESHAN.jpg"></a>
+</div>
+
 <header>
   <h1>کافه بوف</h1>
-  <p>منوی سفارش آنلاین</p>
 </header>
 
-<!-- دسته بندی -->
-<div class="categories">
-  <button class="active" data-category="all">همه</button>
-  <button data-category="coffee">قهوه</button>
-  <button data-category="cold">سرد</button>
-  <button data-category="cake">کیک</button>
-</div>
+<input type="text" id="searchBox" placeholder="جستجو" oninput="renderMenu()">
 
-<!-- منو -->
-<div id="menu">
+<div class="categories" id="categories"></div>
+<div class="menu" id="menu"></div>
 
-  <div class="item coffee">
-    <img src="images/latte.jpg">
-    <div class="info">
-      <h3>لاته ماسالا</h3>
-      <div class="price" data-price="170000">170,000 تومان</div>
-      <button class="add-btn">+</button>
-    </div>
-  </div>
+<button class="cart-btn" id="cart-icon">🛒
+  <span class="cart-count" id="cart-count">0</span>
+</button>
 
-  <div class="item cold">
-    <img src="images/iced.jpg">
-    <div class="info">
-      <h3>آیس کافی</h3>
-      <div class="price" data-price="150000">150,000 تومان</div>
-      <button class="add-btn">+</button>
-    </div>
-  </div>
-
-</div>
-
-<!-- آیکن سبد -->
-<div id="cart-icon">
-  🛒 <span id="cart-count">0</span>
-</div>
-
-<!-- پنجره سبد خرید -->
-<div id="cart-popup" class="hidden">
-
+<div class="cart hidden" id="cart-popup">
   <div id="cart-items"></div>
+  <div class="total" id="cart-total"></div>
 
-  <div class="cart-summary">
-    <div id="cart-subtotal"></div>
-    <div id="cart-tax"></div>
-    <div id="cart-total"></div>
-  </div>
+  <form id="orderForm">
+    <input type="text" id="customer-name" placeholder="نام شما">
+    <input type="text" id="table-number" placeholder="شماره میز">
+    <textarea id="order-note" placeholder="توضیحات سفارش (مثلاً بدون شکر)"></textarea>
+    <button type="button" id="checkout">ثبت سفارش</button>
+  </form>
 
-  <input id="customer-name" placeholder="نام مشتری">
-  <input id="table-number" placeholder="شماره میز">
-
-  <textarea id="customer-note" placeholder="توضیحات مشتری (اختیاری)"></textarea>
-
-  <button id="checkout">ثبت سفارش</button>
-  <button id="close-cart">بستن</button>
+  <button id="close-cart">بستن سبد</button>
 </div>
 
 <script src="script.js"></script>
