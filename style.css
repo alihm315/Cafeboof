@@ -109,8 +109,8 @@ header h1 {
   border: none;
   outline: none;
   font-size: 14px;
-  background: #1d3a2b;
-  color: #333333;
+  background: #333333;
+  color: #fff;
   transition: 0.3s;
 }
 #searchBox:focus { background: #3fa46a; color: #08150f; }
